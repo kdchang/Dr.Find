@@ -21,6 +21,7 @@ $ grunt server
 # Deploy
 
 ```
+$ grunt build
 $ git subtree push --prefix dist origin gh-pages
 ```
 
