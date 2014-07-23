@@ -15,7 +15,7 @@ $ npm -v
 $ git clone git@github.com:kdchang/Dr.Find.git
 $ sudo npm install
 $ bower install
-$ grunt server
+$ npm start
 ```
 
 # Deploy
