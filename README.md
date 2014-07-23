@@ -1,3 +1,14 @@
+# Environment Version
+- Michael Hsu
+
+```
+$ node -v                                                    
+v0.10.29
+
+$ npm -v
+1.4.20
+```
+
 # Getting Start
 
 ```
@@ -6,6 +17,14 @@ $ sudo npm install
 $ bower install
 $ grunt server
 ```
+
+# Deploy
+
+```
+$ git subtree push --prefix dist origin gh-pages
+```
+
+- link: [kdchang.cc/Dr.Find](http://kdchang.cc/Dr.Find/#/)
 
 # Possible Problem
 ## 1. Compass Task Problem
