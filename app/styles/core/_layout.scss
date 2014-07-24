@@ -1,0 +1,138 @@
+// *************************************
+//
+//   Layout
+//   -> Margin, Padding, Sizing
+//
+// *************************************
+
+// -------------------------------------
+//   Body
+// -------------------------------------
+
+body {
+	position: relative;
+	height: 100%;
+	height: 100vh;
+	padding-top: $nav-height;
+}
+
+// -------------------------------------
+//   Nav
+// -------------------------------------
+
+.navbar {
+	background-color: $blue;
+	color: $white;
+
+	a {
+		color: $white;
+	}
+
+	.icon-bar {
+		background-color: $white;
+	}
+
+	.nav {
+
+		@include respond-to($tablet-min-width) {
+			margin-right: 18px;
+		}
+	}
+
+	li > a:hover, li > a:focus {
+		background-color: lighten($blue, 10%);
+	}
+
+	.navbar-brand {
+		line-height: inherit;
+		font-weight: 800;
+	}
+
+	.form-control:focus {
+		border-color: #49bfff;
+		outline: 0;
+		-webkit-box-shadow: inset 0 0 0;
+		box-shadow: inset 0 0 0;
+	}
+}
+
+// -------------------------------------
+//   Main
+// -------------------------------------
+
+#main.find {
+
+	&, .row, .row > * {
+		height: 100%;
+		// height: 100vh;
+		overflow: auto;
+	}
+
+	.left {
+		float: left;
+		width: calc(100% - #{$map-right-width});
+		position: relative;
+
+		.map {
+			height: calc(100% - #{$map-bottom-height});
+			position: relative;
+			@include z-index(map);
+		}
+
+		.bottom {
+			height: $map-bottom-height;
+			position: relative;
+			@include z-index(map_bottom);
+			background-color: rgba($white, .7);
+		}
+	}
+
+	.right {
+		float: right;
+		width: $map-right-width;
+		padding: 0 12px;
+		@include z-index(map_right);
+	}
+}
+
+// -------------------------------------
+//   Map
+// -------------------------------------
+
+.map {
+	padding: 0;
+}
+
+// -------------------------------------
+//   Row
+// -------------------------------------
+
+.l-row {}
+
+// -------------------------------------
+//   Utilities
+// -------------------------------------
+
+%l-block, .l-block {
+	display: block;
+}
+
+%l-condense, .l-condense {
+	margin-bottom: rem($base-whitespace / 2);
+}
+
+%l-pullLeft, .l-pullLeft {
+	float: left;
+}
+
+%l-pullRight, .l-pullRight {
+	float: right;
+}
+
+%l-space, .l-space {
+	margin-bottom: rem($base-whitespace);
+}
+
+%l-xspace, .l-xspace {
+	margin-bottom: rem($base-whitespace * 2);
+}

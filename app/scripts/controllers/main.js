@@ -14,4 +14,12 @@ angular.module('drfindApp')
       'AngularJS',
       'Karma'
     ];
+
+    $scope.map = {
+      center: {
+          latitude: 25,
+          longitude: 121
+      },
+      zoom: 8
+    };
   });

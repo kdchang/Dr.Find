@@ -1,0 +1,27 @@
+// *************************************
+//
+//   Module
+//   -> This is an example module
+//
+// *************************************
+
+.angular-google-map {
+	height: 100%;
+}
+
+.angular-google-map-container {
+	height: calc(100% + #{$map-bottom-height*2});
+	position: relative;
+	top: - $map-bottom-height;
+	// height: 100%;
+
+
+	.gm-style {
+		// height: calc(100% - #{$map-bottom-height}) !important;
+		overflow: visible !important;
+
+		> .gmnoprint {
+			margin: 200px 0 !important;
+		}
+	}
+}

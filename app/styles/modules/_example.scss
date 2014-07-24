@@ -1,46 +1,34 @@
 // *************************************
 //
-//   Application
-//   -> MVCSS v3.0.2
+//   Module
+//   -> This is an example module
 //
 // *************************************
 
-// -------------------------------------
-//   Compass
-// -------------------------------------
-
-// Import Compass here...
+// .module
 
 // -------------------------------------
-//   Core
+//   Modifiers
 // -------------------------------------
 
-// ----- Settings ----- //
-
-@import "core/settings";
-
-// ----- Helpers ----- //
-
-@import "core/helpers";
-
-// ----- Base ----- //
-
-@import "core/base";
-
-// ----- Content ----- //
-
-@import "core/content";
-
-// ----- Layout ----- //
-
-@import "core/layout";
+// .module--modifier
 
 // -------------------------------------
-//   Modules
+//   States
 // -------------------------------------
 
-@import "modules/google-map";
+// .is-module-state
 
 // -------------------------------------
-//   Inbox
+//   Context
 // -------------------------------------
+
+// .has-module
+
+// -------------------------------------
+//   Submodules
+// -------------------------------------
+
+// ----- Submodule ----- //
+
+// .module-submodule

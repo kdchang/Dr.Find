@@ -1,0 +1,94 @@
+// *************************************
+//
+//   Helpers
+//   -> Extends, Functions, Mixins, Animations
+//
+// *************************************
+
+// -------------------------------------
+//   Extends
+// -------------------------------------
+
+// ----- Debug ----- //
+
+%debug {
+	background-color: pink !important;
+}
+
+// ----- Ellipsis ----- //
+
+%ellipsis {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+// ----- Clearfix ----- //
+
+%group:after {
+	clear: both;
+	content: "";
+	display: table;
+}
+
+// ----- Image Replacement ----- //
+
+%ir {
+	background-color: transparent;
+	border: 0;
+	overflow: hidden;
+	&:before {
+		content: "";
+		display: block;
+		width: 0;
+		height: 150%;
+	}
+}
+
+// -------------------------------------
+//   Functions
+// -------------------------------------
+
+// ----- em ----- //
+
+@function em($target, $context: $base-fontSize) {
+	@if $target == 0 {
+		@return 0;
+	}
+	@else {
+		@return #{$target / $context}em;
+	}
+}
+
+// ----- rem ----- //
+
+@function rem($size) {
+	@return #{$size / $base-fontSize}rem;
+}
+
+// -------------------------------------
+//   Mixins
+// -------------------------------------
+
+// ----- Respond-to ----- //
+
+@mixin respond-to($val, $query: min-width, $media: screen) {
+	@media #{$media} and ($query: $val) {
+		@content;
+	}
+}
+
+// ----- z-index ----- //
+
+@mixin z-index($element, $elements: $zIndex-elements, $base: 10) {
+	$index: index($elements, $element);
+	@if $index == false {
+		@warn "There is no item "#{$element}" in the z-index list, please choose one of: #{$elements}'";
+	} @else {
+		z-index: index($elements, $element) + $base;
+	}
+}
+
+// -------------------------------------
+//   Animations
+// -------------------------------------

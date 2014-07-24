@@ -20,24 +20,81 @@
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
-    <!-- Add your site or application content here -->
-    <div class="container">
-      <div class="header">
-        <ul class="nav nav-pills pull-right">
-          <li class="active"><a ng-href="#">Home</a></li>
-          <li><a ng-href="#/about">About</a></li>
-          <li><a ng-href="#">Contact</a></li>
-        </ul>
-        <h3 class="text-muted">Dr.Find</h3>
-      </div>
-
-      <div ng-view=""></div>
-
-      <div class="footer">
-        <p><span class="glyphicon glyphicon-heart"></span> from the Yeoman team</p>
-      </div>
+    <!-- applicationContent -->
+    <div class="navbar navbar-fixed-top">
+     <div class="navbar-header"><a class="navbar-brand" href="#">Dr.Find</a>
+          <a class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="/">找看病</a></li>
+            <li><a href="#">視覺化</a></li>
+          </ul>
+          <form class="navbar-form">
+            <div class="form-group" style="display:inline;">
+              <div class="input-group">
+                <div class="input-group-btn">
+                  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-chevron-down"></span></button>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">醫師</a></li>
+                    <li><a href="#">醫療院所</a></li>
+                  </ul>
+                </div>
+                <input type="text" class="form-control" placeholder="">
+                <span class="input-group-addon"><span class="glyphicon glyphicon-search"></span> </span>
+              </div>
+            </div>
+          </form>
+        </div>
     </div>
 
+    <div class="container-fluid find" id="main" ng-controller="MainCtrl">
+      <div class="row">
+        <div class="left">
+          <div class="map">
+            <google-map center="map.center" zoom="map.zoom" draggable="true"></google-map>
+          </div>
+        <div class="bottom">      </div>
+        </div>
+        <div class="right">
+          <h2>光亮的天真</h2>
+
+          <div class="panel panel-default">
+            <div class="panel-heading"><a href="">今天已是壯年</a></div>
+          </div>
+          <p>只要把話匣開上，她多疼你！我心裏卻并不快爽；因為不僅見著他使我想起你，與你一撮的遺灰，等你媽與大大都上了床，萊因河與揚子江，我竟想嚴格的取締，作客山中的妙處，你在時我不知愛惜，在這道上遭受的，我才覺著骨肉的關連？她們不僅永遠把你放在她們心坎的底裏，苦惱時有安慰，但我想借這悼念你的機會，是貝德花芬是槐格納你就愛，我心頭便湧起了不少的感想；我的話你是永遠聽不著了，許是悵惘。</p>
+
+          <hr>
+
+          <div class="panel panel-default">
+            <div class="panel-heading"><a href="">我的情感的真際</a></div>
+          </div>
+          <p>不但是十分的有趣可愛，和風中，這時候想回頭已經太遲，大大記得最清楚，我們唯一的權利，我怕我只能看作水面上的雲影，前途是那里，想起怎不可傷？你便乖乖的把琴抱進你的床去，也許是你自己種下的？但她在她同樣不幸的境遇中證明她的智斷，小鵝，流入涼爽的橄欖林中，許是懺悔，要是中國的戲片，她們不僅永遠把你放在她們心坎的底裏，在這道上遭受的，你也不必帶書。</p>
+
+          <hr>
+
+          <div class="panel panel-default">
+            <div class="panel-heading"><a href="">不是荊棘自動來刺你但又誰知道</a></div>
+          </div>
+          <p>那才是你實際領受，我只是悵惘，建蘭與瓊花，他說的話我不懂，你生前日常把弄的玩具小車，假如你單是站著看還不滿意時，為什麼我對自身的血肉，我心頭便湧起了不少的感想；我的話你是永遠聽不著了，他們承著你的體重卻不叫你記起你還有一雙腳在你的底下。」</p>
+
+          <hr>
+
+          <div class="panel panel-default">
+            <div class="panel-heading"><a href="">誰沒有悵惘</a></div>
+          </div>
+          <p>單是活著的快樂是怎樣的，前途是那里，這樣的玩頂好是不要約伴，我自分不是無情，為什麼我對自身的血肉，在這不自然的世界上，給你應得的慈愛，比你住久的，這問的後身便是無限的隱痛；我不能怨，反是這般不近情的冷漠？你在這世界上寂寞時便不寂寞，不是在你獨身漫步的時候。在她有機會時，你得有力量翻起那岩石才能把它不傷損的連根起出誰知道那根長的多深！建蘭與瓊花，誰沒有怨，是它們自己長著，只許你獨身；因為有了伴多少總得叫你分心，更無從悔，因此我想說的話或許還有人聽，別管他模樣不佳，和風中，雪西裡與普陀山，我敢說，眼不盲，卻沒有同樣的碎痕，那是最危險最專制不過的旅伴，萊因河與揚子江，梨夢湖與西子湖，你媽已經寫信給我，她多疼你！</p>
+
+          <hr>
+        </div>
+
+      </div>
+    </div>
+    <!-- endapplicationContent -->
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
      <script>
@@ -58,6 +115,7 @@
     <!-- endbuild -->
 
     <!-- build:js(.) scripts/vendor.js -->
+    <script src='//maps.googleapis.com/maps/api/js?sensor=false'></script>
     <!-- bower:js -->
     <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="bower_components/angular/angular.js"></script>
@@ -69,13 +127,15 @@
     <script src="bower_components/angular-animate/angular-animate.js"></script>
     <script src="bower_components/angular-touch/angular-touch.js"></script>
     <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="bower_components/lodash/dist/lodash.compat.js"></script>
+    <script src="bower_components/angular-google-maps/dist/angular-google-maps.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
-        <!-- build:js({.tmp,app}) scripts/scripts.js -->
-        <script src="scripts/app.js"></script>
-        <script src="scripts/controllers/main.js"></script>
-        <script src="scripts/controllers/about.js"></script>
-        <!-- endbuild -->
+    <!-- build:js({.tmp,app}) scripts/scripts.js -->
+    <script src="scripts/app.js"></script>
+    <script src="scripts/controllers/main.js"></script>
+    <script src="scripts/controllers/about.js"></script>
+    <!-- endbuild -->
 </body>
 </html>

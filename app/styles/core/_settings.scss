@@ -1,0 +1,74 @@
+// *************************************
+//
+//   Settings
+//   -> Fonts, Variables
+//
+// *************************************
+
+// -------------------------------------
+//   @font-face
+// -------------------------------------
+
+// ...
+
+// -------------------------------------
+//   Variables
+// -------------------------------------
+
+// ----- Layouts ----- //
+
+// Z-index
+
+$zIndex-elements: background,
+                  shadow,
+                  map,
+                  map_bottom,
+                  map_right,
+                  footer,
+                  	footer_content,
+                  nav,
+                  	nav_content,
+                  	nav_logo,
+                  header,
+                  	header_content,
+                  trigger;
+
+$nav-height: 50px;
+$base-whitespace: 20px;
+$map-right-width: 340px;
+$map-bottom-height: 200px;
+
+// ----- Colors ----- //
+
+$white: #fefefe;
+$blue: hsl(201, 81%, 48%);
+
+// ----- Base Colors ----- //
+
+$base-backgroundColor: white;
+$base-color: #222222;
+$base-link-color: #0053c9;
+
+// ----- Base Borders & Box Shadows ----- //
+
+$base-border: 1px solid $base-color;
+$base-borderRadius: 3px;
+$base-boxShadow: 0 1px 2px rgba($base-color, 0.25);
+
+// ----- Base Content ----- //
+
+$base-fontFamily: sans-serif;
+$base-fontSize: 16px;
+$base-lineHeight: 1.5;
+
+// ----- Content ----- //
+
+$c-header-fontFamily: sans-serif;
+
+// ----- Responsive Breakpoints ----- //
+
+$phone-min-width: 341px;
+$tablet-min-width: 768px;
+$desktop-min-width: 992px;
+$large-desktop-min-width: 1200px;
+$very-large-desktop-min-width: 1700px;
