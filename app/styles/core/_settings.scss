@@ -35,19 +35,21 @@ $zIndex-elements: background,
 
 $nav-height: 50px;
 $base-whitespace: 20px;
-$map-right-width: 340px;
+$map-right-width: 400px;
 $map-bottom-height: 200px;
 
 // ----- Colors ----- //
 
+$black: #111;
 $white: #fefefe;
-$blue: hsl(201, 81%, 48%);
+$blue: #1798DE;
+$red: adjust-hue($blue, 120deg);
 
 // ----- Base Colors ----- //
 
 $base-backgroundColor: white;
 $base-color: #222222;
-$base-link-color: #0053c9;
+$base-link-color: $red;
 
 // ----- Base Borders & Box Shadows ----- //
 
@@ -72,3 +74,5 @@ $tablet-min-width: 768px;
 $desktop-min-width: 992px;
 $large-desktop-min-width: 1200px;
 $very-large-desktop-min-width: 1700px;
+
+$null: "";

@@ -57,7 +57,7 @@ body {
 }
 
 // -------------------------------------
-//   Main
+//   Main Dr.Find
 // -------------------------------------
 
 #main.find {
@@ -84,16 +84,45 @@ body {
 			position: relative;
 			@include z-index(map_bottom);
 			background-color: rgba($white, .7);
+
+			> .title {
+				margin: 0;
+				position: absolute;
+				padding: 12px;
+				@include opacity(.32);
+			}
 		}
 	}
 
 	.right {
 		float: right;
 		width: $map-right-width;
-		padding: 0 12px;
 		@include z-index(map_right);
 	}
+
+	.angular-google-map {
+		height: 100%;
+	}
+
+	.angular-google-map-container {
+		height: calc(100% + #{$map-bottom-height*2});
+		position: relative;
+		top: - $map-bottom-height;
+		// height: 100%;
+
+		.gm-style {
+			overflow: visible !important;
+
+			> .gmnoprint {
+				margin: 200px 0 200px !important;
+			}
+		}
+	}
 }
+
+// ----- Search Results ----- //
+
+@import "layouts/results";
 
 // -------------------------------------
 //   Map
@@ -102,12 +131,6 @@ body {
 .map {
 	padding: 0;
 }
-
-// -------------------------------------
-//   Row
-// -------------------------------------
-
-.l-row {}
 
 // -------------------------------------
 //   Utilities
