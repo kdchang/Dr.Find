@@ -24,6 +24,8 @@ $zIndex-elements: background,
                   map,
                   map_bottom,
                   map_right,
+                  	map_right_bg,
+                  	map_right_content,
                   footer,
                   	footer_content,
                   nav,
@@ -47,8 +49,8 @@ $red: adjust-hue($blue, 120deg);
 
 // ----- Base Colors ----- //
 
-$base-backgroundColor: white;
-$base-color: #222222;
+$base-backgroundColor: $white;
+$base-color: $black;
 $base-link-color: $red;
 
 // ----- Base Borders & Box Shadows ----- //

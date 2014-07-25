@@ -39,6 +39,10 @@ body {
 		}
 	}
 
+	li.active > a, li.active > a {
+		background-color: lighten($blue, 7%);
+	}
+
 	li > a:hover, li > a:focus {
 		background-color: lighten($blue, 10%);
 	}
@@ -53,6 +57,22 @@ body {
 		outline: 0;
 		-webkit-box-shadow: inset 0 0 0;
 		box-shadow: inset 0 0 0;
+	}
+}
+
+.loading-progress {
+	margin: 0;
+	position: absolute;
+	@include z-index(trigger);
+	top: $nav-height;
+	width: 100%;
+	height: 4px;
+	@include border-radius(0);
+	background-color: transparent;
+
+	.progress-bar {
+		background-color: $red;
+		@include box-shadow(inset 0 2px 0 rgba(0, 0, 0, .15));
 	}
 }
 
@@ -83,7 +103,7 @@ body {
 			height: $map-bottom-height;
 			position: relative;
 			@include z-index(map_bottom);
-			background-color: rgba($white, .7);
+			background-color: rgba($base-backgroundColor, .7);
 
 			> .title {
 				margin: 0;
@@ -97,7 +117,9 @@ body {
 	.right {
 		float: right;
 		width: $map-right-width;
+		background-color: rgba($base-backgroundColor, 1);
 		@include z-index(map_right);
+		@include box-shadow(-1px 0px 0 rgba($black, .5));
 	}
 
 	.angular-google-map {
