@@ -19,10 +19,8 @@
     <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
-
-    <!-- applicationContent -->
-    <div class="navbar navbar-fixed-top">
-     <div class="navbar-header"><a class="navbar-brand" href="#">Dr.Find</a>
+    <div class="navbar navbar-fixed-top" ng-controller="NavCtrl">
+      <div class="navbar-header"><a class="navbar-brand" href="#">Dr.Find</a>
         <a class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
@@ -31,8 +29,9 @@
       </div>
       <div class="navbar-collapse collapse">
         <ul class="nav navbar-nav">
-          <li class="active"><a href="/">找看病</a></li>
-          <li><a href="#">視覺化</a></li>
+          <li ng-class="getNavClass('/')"><a ng-href="#">找看病</a></li>
+          <li ng-class="getNavClass('/visualize')"><a ng-href="#/visualize">視覺化</a></li>
+          <li ng-class="getNavClass('/about')"><a ng-href="#/about">關於</a></li>
         </ul>
         <form class="navbar-form">
           <div class="form-group" style="display:inline;">
@@ -55,73 +54,7 @@
     <!-- 載入進度 -->
     <progressbar class="loading-progress" max="100" value="50"></progressbar>
     <!-- /載入進度 -->
-
-    <div class="container-fluid find" id="main" ng-controller="MainCtrl">
-      <div class="row">
-        <div class="left">
-          <div class="map">
-            <google-map center="map.center" zoom="map.zoom" draggable="true"></google-map>
-          </div>
-        <div class="bottom">
-          <h1 class="title">篩選器</h1>
-          <div class="filters">
-          </div>
-        </div>
-        </div>
-        <div class="right">
-          <div class="results">
-            <h1 class="title">搜尋結果</h1>
-            <pager total-items="totalItems" ng-model="currentPage"></pager>
-
-            <!-- 搜尋結果項目 -->
-            <div class="result show">
-              <article class="info hospital" itemscope="" itemtype="http://schema.org/Hospital" style="background-image: url(http://maps.googleapis.com/maps/api/streetview?size=800x800&location=25.024682,121.54287399999998&fov=90&heading=62.398044771573495);">
-
-                <div class="panel about">
-                  <div class="panel-heading"><h2 class="panel-title">
-                    <a href="">簡介</a>
-                  </h2></div>
-                  <div class="panel-body">
-                    <div class="name" itemprop="name"><a href="">啟誠聯合診所</a></div>
-                    <div class="specialty" itemprop="medicalSpecialty">西醫專科診所</div>
-                    <div class="description" itemprop="description">本院集合18位醫護精英，以熱忱及專業為您提供最佳之醫療服務。</div>
-                    <div class="address" itemprop="address">台北市和平東路二段120號</div>
-                    <div class="telephone" itemprop="telephone">02-23784380</div>
-                    <div class="email" itemprop="email"></div>
-                  </div>
-                </div>
-
-                <div class="panel panel-default opening-hours">
-                  <div class="panel-heading"><h2 class="panel-title">
-                    <a href="">看診時間</a>
-                  </h2></div>
-                  <div class="panel-body">
-                    只要把話匣開上，她多疼你！我心裏卻并不快爽；因為不僅見著他使我想起你，與你一撮的遺灰，等你媽與大大都上了床，萊因河與揚子江，我竟想嚴格的取締，作客山中的妙處，你在時我不知愛惜，在這道上遭受的，我才覺著骨肉的關連？她們不僅永遠把你放在她們心坎的底裏，苦惱時有安慰，但我想借這悼念你的機會，是貝德花芬是槐格納你就愛，我心頭便湧起了不少的感想；我的話你是永遠聽不著了，許是悵惘。
-                  </div>
-                </div>
-
-                <div class="panel panel-default opening-hours">
-                  <div class="panel-heading"><h2 class="panel-title">
-                    <a href="">已知醫師</a>
-                  </h2></div>
-                  <div class="panel-body">
-                    只要把話匣開上，她多疼你！我心裏卻并不快爽；因為不僅見著他使我想起你，與你一撮的遺灰，等你媽與大大都上了床，萊因河與揚子江，我竟想嚴格的取締，作客山中的妙處，你在時我不知愛惜，在這道上遭受的，我才覺著骨肉的關連？她們不僅永遠把你放在她們心坎的底裏，苦惱時有安慰，但我想借這悼念你的機會，是貝德花芬是槐格納你就愛，我心頭便湧起了不少的感想；我的話你是永遠聽不著了，許是悵惘。
-                    <hr>
-                    只要把話匣開上，她多疼你！我心裏卻并不快爽；因為不僅見著他使我想起你，與你一撮的遺灰，等你媽與大大都上了床，萊因河與揚子江，我竟想嚴格的取締，作客山中的妙處，你在時我不知愛惜，在這道上遭受的，我才覺著骨肉的關連？她們不僅永遠把你放在她們心坎的底裏，苦惱時有安慰，但我想借這悼念你的機會，是貝德花芬是槐格納你就愛，我心頭便湧起了不少的感想；我的話你是永遠聽不著了，許是悵惘。
-                    <hr>
-                  </div>
-                </div>
-
-              </article>
-            </div>
-            <!-- /搜尋結果項目 -->
-
-          </div>
-        </div>
-
-      </div>
-    </div>
-    <!-- endapplicationContent -->
+    <div class="view" ng-view=""></div>
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
      <script>
@@ -163,7 +96,9 @@
     <!-- build:js({.tmp,app}) scripts/scripts.js -->
     <script src="scripts/app.js"></script>
     <script src="scripts/controllers/main.js"></script>
+    <script src="scripts/controllers/visualize.js"></script>
     <script src="scripts/controllers/about.js"></script>
+    <script src="scripts/controllers/nav.js"></script>
     <!-- endbuild -->
 </body>
 </html>
