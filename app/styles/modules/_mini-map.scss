@@ -18,6 +18,18 @@
 	.h, .h path {
 		fill: red;
 	}
+
+	g:hover {
+		cursor: pointer;
+
+		path {
+			fill: red;
+		}
+
+		&::after {
+			content: "asdfasdf";
+		}
+	}
 }
 
 // -------------------------------------
