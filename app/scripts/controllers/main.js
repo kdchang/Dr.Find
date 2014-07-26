@@ -69,6 +69,42 @@ angular.module('drfindApp')
 				});
 		};
 
+    $scope.ptts = []
+    $scope.searchPtt = function(){
+      $scope.ptts = []
+      var request = $http({
+        method: "GET",
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        url: "https://doctors.firebaseio.com/ptt-drinfo/"+$scope.departSelect+".json"
+      });
+
+      request.success(function(data, status, headers, config) {
+        if(typeof data !== null) {
+
+          angular.forEach(data, function(value) {
+
+            var request = $http({
+              method: "GET",
+              headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+              },
+              url: "https://ptt-doctor-info.firebaseio.com/list/"+value+".json"
+            });
+
+            request.success(function(data, status, headers, config) {
+              if(typeof data !== null) {
+                console.log(data);
+                $scope.ptts.push(data);
+              }
+            });
+          });
+        }
+      });
+
+    };
+
 		$scope.searchDoctor = function() {
 			//alert($scope.docName);
 
@@ -92,6 +128,9 @@ angular.module('drfindApp')
 
 			request.success(function(data, status, headers, config) {
 				if(typeof data !== null) {
+          $scope.searchResults = data;
+          $scope.searchPtt();
+          // $scope.markers.setMap(null);
 					for (var i = 0; i < data.length; i++){
 					  // look for the entry with a matching `code` value
 					  if (data[i].doctor == $scope.docName){
@@ -102,7 +141,17 @@ angular.module('drfindApp')
 					  }
 					}
 				} else {
-					$scope.searchResults = data;
+
+          // var centre = $scope.map.getCenter(); 
+          // console.log(centre);
+          // var latlng = new google.maps.LatLng(centre["k"], centre["B"]);
+          // console.log(latlng);
+          // $scope.map.setCenter(latlng);
+          
+          // console.log($scope.markers[0]);
+    //       $scope.$on('markersInitialized', function(event, map) {
+    //         console.log("mapInitialized");
+    //       });
 				}
 			});
 

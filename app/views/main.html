@@ -2,42 +2,11 @@
   <div class="row">
     <div class="left">
       <div class="bottom">
-        <div class="articles">
-          <article class="article">
-            <h1 class="title">[請益] 健檢數值異常 應該怎麼辦</h1>
-            <time class="date">2018/32/99</time>
-          </article>
-          <article class="article">
-            <h1 class="title">[問題] 這也是憂鬱症嗎？</h1>
-            <time class="date">2018/32/99</time>
-          </article>
-          <article class="article">
-            <h1 class="title">[請益] 偶爾疼的要命的痔瘡</h1>
-            <time class="date">2018/32/99</time>
-          </article>
-          <article class="article">
-            <h1 class="title">萊因河與揚子江</h1>
-            <time class="date">2018/32/99</time>
-          </article>
-          <article class="article">
-            <h1 class="title">萊因河與揚子江</h1>
-            <time class="date">2018/32/99</time>
-          </article>
-          <article class="article">
-            <h1 class="title">萊因河與揚子江</h1>
-            <time class="date">2018/32/99</time>
-          </article>
-          <article class="article">
-            <h1 class="title">萊因河與揚子江</h1>
-            <time class="date">2018/32/99</time>
-          </article>
-          <article class="article">
-            <h1 class="title">萊因河與揚子江</h1>
-            <time class="date">2018/32/99</time>
-          </article>
-          <article class="article">
-            <h1 class="title">萊因河與揚子江</h1>
-            <time class="date">2018/32/99</time>
+        <div class="articles" >
+          <article class="article" ng-repeat="ptt in ptts  | limitTo: 10 | orderBy:ptt.Time">
+            <h1 class="title"> {{ptt.Title}} </h1>
+            <time class="date"> {{ptt.Time}} </time>
+            <a href=" {{ptt.Link}} "> Link</a>
           </article>
         </div>
         <div class="filters">
