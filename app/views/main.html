@@ -226,6 +226,7 @@
         <div class="title last">推薦文章</div>
       </div>
       <div class="map google-map" ng-model="searchResults">
+        <div>{{map.geLatitude}}</div>
 <!--         <google-map center="map.center" zoom="map.zoom" draggable="true">
           <marker coords="map.center" click="callDetailInfo()">
           </marker>
@@ -237,7 +238,7 @@
       </google-map>
         <div ng-repeat="m in fakeMap">{{m.coords}}</div> -->
         <!--  -->
-          <map class="google-map-container" zoom="15" center="{{searchResults[0].address}}">
+          <map class="google-map-container" zoom="15" geo-fallback-center="[25.058739, 121.554969]" center="{{searchResults[0].address || '[25.058739, 121.554969]'}}">
             <div ng-repeat="mm in searchResults">
               <marker  position="{{mm.address}}" on-click="callDetailInfo(mm.link)"></marker>
             </div>
@@ -249,7 +250,7 @@
           <info-window id="marker-info" style="display: none;">
             <h1> I am an InfoWindow </h1>
             I am here at [[this.getPosition()]]
-            and the store name is [[store.name]]
+            and the store name is [[searchResults.doctor]]
           </info-window>
         </map>
 
