@@ -16,8 +16,8 @@ angular
     'ngRoute',
     'ngSanitize',
     'ngTouch',
-    'google-maps',
     'ui.bootstrap',
+    'ui.select2',
     'firebase',
     'angular-loading-bar',
     'ngMap'

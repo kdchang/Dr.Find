@@ -1,0 +1,77 @@
+// *************************************
+//
+//   Module
+//   -> This is an example module
+//
+// *************************************
+
+.mini-map {
+
+	path {
+		fill: #F9F3B1;
+		stroke: #000000;
+		stroke-width: 2;
+		stroke-linecap: round;
+		stroke-linejoin: round;
+	}
+
+	.h, .h path {
+		fill: red;
+	}
+
+	g:hover {
+		cursor: pointer;
+
+		path {
+			fill: red;
+		}
+	}
+
+	.find & {
+		path {
+			fill: rgba($blue, .2);
+			stroke: lighten($black, .4);
+			stroke-width: 5;
+			@include transition-property(fill);
+			@include transition-duration(.0s);
+		}
+
+		.active, .active path {
+			fill: rgba($red, .6);
+		}
+
+		g:hover {
+			cursor: pointer;
+
+			path {
+				fill: rgba($blue, .6);
+			}
+		}
+	}
+}
+
+// -------------------------------------
+//   Modifiers
+// -------------------------------------
+
+// .module--modifier
+
+// -------------------------------------
+//   States
+// -------------------------------------
+
+// .is-module-state
+
+// -------------------------------------
+//   Context
+// -------------------------------------
+
+// .has-module
+
+// -------------------------------------
+//   Submodules
+// -------------------------------------
+
+// ----- Submodule ----- //
+
+// .module-submodule
