@@ -17,7 +17,9 @@ angular
     'ngSanitize',
     'ngTouch',
     'google-maps',
-    'ui.bootstrap'
+    'ui.bootstrap',
+    'firebase',
+    'angular-loading-bar'
   ])
   .config(function ($routeProvider) {
     $routeProvider
