@@ -14,6 +14,7 @@ body {
 	height: 100%;
 	height: 100vh;
 	padding-top: $nav-height;
+	min-width: 1200px;
 }
 
 .view {
@@ -110,7 +111,7 @@ body {
 			position: absolute;
 			@include z-index(map_bottom);
 			background-color: rgba($base-backgroundColor, .5);
-			overflow: auto;
+			// overflow: hidden;
 			bottom: 0;
 			width: 100%;
 
@@ -121,32 +122,83 @@ body {
 				@include opacity(.32);
 			}
 
+			.filters {
+				padding: 6px 0;
+				width: 100%;
+			}
+
+			.control-group {
+				max-width: 500px;
+				// width: 300px;
+				margin: 4px 4px;
+				display: inline-block;
+			}
+
+			.control-group.dist {
+				float: left;
+				margin: 0;
+			}
+
+			.control-group.cat {
+
+				.btn-group {
+
+					.btn:last-of-type {
+						border-top-right-radius: 0;
+						border-bottom-right-radius: 0;
+					}
+				}
+
+				.select2-container {
+					margin-left: -5px;
+
+					.select2-choice {
+						padding-left: 4px;
+						border-top-left-radius: 0;
+						border-bottom-left-radius: 0;
+
+					}
+				}
+			}
+
+			.mini-map {
+				position: relative;
+				height: $map-bottom-height + 60px;
+				top: -36px;
+				left: -8px;
+				width: $map-bottom-height * 0.9;
+			}
+
 			.articles {
 				position: relative;
 				width: 100%;
 				height: 100%;
 				@include nowrap;
-				overflow-x: auto;
-				overflow-y: hidden;
+				overflow: auto;
+				overflow-x: hidden;
+				overflow-y: auto;
+				position: absolute;
+				top: 0;
+				right: 0;
+				// width: $map-articles-width;
+				// text-align: right;
 			}
 
 			.article {
-				display: inline-block;
+
+				// display: inline-block;
 				white-space: normal;
 				margin: 12px 6px;
 				overflow: hidden;
-				width: 200px;
-				height: $map-bottom-height - 12px * 3;
+				// width: 200px;
+				height: auto;
 				padding: 12px 10px;
 				background-color: rgba($white, .8);
-
-				&:first-of-type {
-					margin-left: 12px;
-				}
-
-				&:last-of-type {
-					margin-right: 12px;
-				}
+				width: $map-articles-width;
+				position: relative;
+				right: 0;
+				left: auto;
+				margin-left: auto;
 
 				> * {
 					@include ellipsis;
@@ -164,6 +216,27 @@ body {
 					font-size: 12px;
 				}
 			}
+		}
+
+		.articles {
+			@include clip-path(polygon(800px 0, 100% 0, 100% 100%, 700px 100%));
+			@include transition-property(all);
+			@include transition-duration(.5s);
+		}
+
+		.filters {
+			@include clip-path(polygon(0 0, 800px 0, 700px 100%, 0 100%));
+			@include transition-property(all);
+			@include transition-duration(.5s);
+		}
+
+		.articles:hover {
+			@include clip-path(polygon(calc(100% - #{$map-articles-width + 20px}) 0, 100% 0, 100% 100%, calc(100% - #{$map-articles-width + 30px}) 100%));
+		}
+
+		.articles:hover ~ .filters {
+			@include clip-path(polygon(0 0, calc(100% - #{$map-articles-width + 20px}) 0, calc(100% - #{$map-articles-width + 30px}) 100%, 0 100%));
+
 		}
 
 		// .bottom {

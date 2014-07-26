@@ -25,9 +25,27 @@
 		path {
 			fill: red;
 		}
+	}
 
-		&::after {
-			content: "asdfasdf";
+	.find & {
+		path {
+			fill: rgba($blue, .2);
+			stroke: lighten($black, .4);
+			stroke-width: 5;
+			@include transition-property(fill);
+			@include transition-duration(.0s);
+		}
+
+		.active, .active path {
+			fill: rgba($red, .6);
+		}
+
+		g:hover {
+			cursor: pointer;
+
+			path {
+				fill: rgba($blue, .6);
+			}
 		}
 	}
 }

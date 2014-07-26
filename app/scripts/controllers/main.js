@@ -18,8 +18,8 @@ angular.module('drfindApp')
     $scope.map = {
       center: {
           latitude: 25,
-          longitude: 121
+          longitude: 121.4
       },
-      zoom: 8
+      zoom: 14
     };
   });

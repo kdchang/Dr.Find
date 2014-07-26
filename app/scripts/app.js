@@ -17,7 +17,8 @@ angular
     'ngSanitize',
     'ngTouch',
     'google-maps',
-    'ui.bootstrap'
+    'ui.bootstrap',
+    'ui.select2'
   ])
   .config(function ($routeProvider) {
     $routeProvider
