@@ -88,7 +88,12 @@ angular.module('drfindApp')
 			// tel: "23118118"
 
 		};
-
+        $scope.deleteMarker = function(){
+            for(var index in $scope.markers) { 
+                $scope.markers[index].setMap(null);
+                delete $scope.markers[index];
+            }
+        }
 		$scope.ptts = []
 		$scope.searchPtt = function() {
 			$scope.ptts = []
@@ -186,6 +191,7 @@ angular.module('drfindApp')
 
 			request.success(function(data, status, headers, config) {
 				if (typeof data !== null) {
+                    $scope.deleteMarker();
 					$scope.searchResults = data;
 					$scope.searchPtt();
 					// $scope.markers.setMap(null);
