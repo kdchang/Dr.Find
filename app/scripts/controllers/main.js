@@ -83,7 +83,9 @@ angular.module('drfindApp')
       request.success(function(data, status, headers, config) {
         if(typeof data !== null) {
 
-          angular.forEach(data, function(value) {
+          // angular.forEach(data, function(value) {
+          for (var i = 0; i < 10; i++){
+            var value = data[i];
 
             var request = $http({
               method: "GET",
@@ -99,7 +101,7 @@ angular.module('drfindApp')
                 $scope.ptts.push(data);
               }
             });
-          });
+          }
         }
       });
 
