@@ -80,7 +80,6 @@ angular.module('drfindApp')
 			}
 		};
 
-		<< << << < HEAD
 		$scope.callDoctorDetailInfo = function() {
 
 			// address: "台北市大安區基隆路2段218號",
