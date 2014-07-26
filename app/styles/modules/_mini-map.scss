@@ -31,7 +31,7 @@
 		path {
 			fill: rgba($blue, .2);
 			stroke: lighten($black, .4);
-			stroke-width: 5;
+			stroke-width: 3;
 			@include transition-property(fill);
 			@include transition-duration(.0s);
 		}
