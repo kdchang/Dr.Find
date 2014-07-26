@@ -52,33 +52,35 @@ angular.module('drfindApp')
 				var p1 = q1.promise;
 
 				p1.then(function(data) {
+          // $scope.info = {};
 					$scope.info = data;
 				});
 				$.getJSON(mm.link, function(data) {
 
 				}).done(function(data) {
-					console.log(data);
-					q1.resolve(data);
-				})
-					.fail(function() {
-						console.log("error");
-					})
-					.always(function() {
-						console.log("complete");
-					}).complete(function() {
-						console.log("second complete");
-					});
-			} else if ($scope.choice == 'doctor') {
-				console.log($scope.searchResults);
-				$scope.info = {};
-				$scope.info.Name = mm.doctor;
-				$scope.info.ClinicType = mm.department;
-				$scope.info.Address = mm.address;
-				$scope.info.Phone = mm.tel;
-				$scope.$apply();
-				console.log($scope.info);
-			}
-		};
+					// console.log(data);
+          q1.resolve(data);
+        })
+          .fail(function() {
+            // console.log("error");
+          })
+          .always(function() {
+            // console.log("complete");
+          }).complete(function() {
+            // console.log("second complete");
+          });
+      } else if ($scope.choice == 'doctor') {
+        // console.log($scope.searchResults);
+        $scope.dinfo = {};
+        $scope.dinfo.Name = mm.doctor;
+        $scope.dinfo.ClinicType = mm.department;
+        $scope.dinfo.Address = mm.address;
+        $scope.dinfo.Phone = mm.tel;
+        // $scope.$apply();
+        // console.log($scope.dinfo);
+      }
+      $scope.$apply();
+    };
 
 		$scope.callDoctorDetailInfo = function() {
 
@@ -88,42 +90,12 @@ angular.module('drfindApp')
 			// tel: "23118118"
 
 		};
-
-		$scope.ptts = []
-		$scope.searchPtt = function() {
-			$scope.ptts = []
-			var request = $http({
-				method: "GET",
-				headers: {
-					'Content-Type': 'application/x-www-form-urlencoded'
-				},
-				url: "https://doctors.firebaseio.com/ptt-drinfo/" + $scope.departSelect + ".json"
-			});
-
-			request.success(function(data, status, headers, config) {
-				if (typeof data !== null) {
-
-					angular.forEach(data, function(value) {
-
-						var request = $http({
-							method: "GET",
-							headers: {
-								'Content-Type': 'application/x-www-form-urlencoded'
-							},
-							url: "https://ptt-doctor-info.firebaseio.com/list/" + value + ".json"
-						});
-
-						request.success(function(data, status, headers, config) {
-							if (typeof data !== null) {
-								//console.log(data);
-								$scope.ptts.push(data);
-							}
-						});
-					});
-				}
-			});
-
-		};
+    $scope.deleteMarker = function(){
+        for(var index in $scope.markers) { 
+            $scope.markers[index].setMap(null);
+            delete $scope.markers[index];
+        }
+    }
 
 		$scope.ptts = []
 		$scope.searchPtt = function() {
@@ -163,6 +135,18 @@ angular.module('drfindApp')
 		};
 
 
+		$scope.callDoctorDetailInfo = function() {
+
+			// address: "台北市大安區基隆路2段218號",
+			// department: "中醫科",
+			// doctor: "郭榮宗",
+			// tel: "23118118"
+
+		};
+
+
+
+
 		$scope.searchDoctor = function() {
 			//alert($scope.docName);
 
@@ -170,9 +154,13 @@ angular.module('drfindApp')
 			$scope.choice;
 
 			if ($scope.docClinicSelect == 0) {
-				$scope.choice = 'doctor';
+				$scope.choice = "doctor";
+        $scope.$apply();
+
 			} else if ($scope.docClinicSelect == 1) {
-				$scope.choice = 'clinic';
+				$scope.choice = "clinic";
+        $scope.$apply();
+
 			}
 
 			var request = $http({
@@ -186,6 +174,7 @@ angular.module('drfindApp')
 
 			request.success(function(data, status, headers, config) {
 				if (typeof data !== null) {
+          $scope.deleteMarker();
 					$scope.searchResults = data;
 					$scope.searchPtt();
 					// $scope.markers.setMap(null);
@@ -198,6 +187,7 @@ angular.module('drfindApp')
 							// obj[i].name is the matched result
 						}
 					}
+          $scope.$apply();
 				} else {
 
 					// var centre = $scope.map.getCenter(); 
@@ -240,7 +230,7 @@ angular.module('drfindApp')
 			});
 
 			p.then(function(token) {
-				console.log(token);
+				// console.log(token);
 				$scope.token = token;
 				$scope.keywordSearch("糖尿病", "http://api.ser.ideas.iii.org.tw:80/api/keyword_search/forum/title");
 				$scope.keywordSearch("糖尿病", "http://api.ser.ideas.iii.org.tw:80/api/keyword_search/news/title");
@@ -268,7 +258,7 @@ angular.module('drfindApp')
 				q.resolve(data);
 			});
 			p.then(function(data) {
-				console.log(data);
+				// console.log(data);
 			});
 		};
 		$scope.getToken();
