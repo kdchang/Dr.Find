@@ -3,10 +3,10 @@
     <div class="left">
       <div class="bottom">
         <div class="articles" >
-          <article class="article" ng-repeat="ptt in ptts  | limitTo: 10 | orderBy:ptt.Time">
+          <article class="article" ng-repeat="ptt in ptts track by $index">
             <h1 class="title"> {{ptt.Title}} </h1>
             <time class="date"> {{ptt.Time}} </time>
-            <a href=" {{ptt.Link}} "> Link</a>
+            <a ng-href=" {{ptt.Link}} " target="_blank"> Link</a>
           </article>
         </div>
         <div class="filters">
@@ -209,7 +209,7 @@
         <!--  -->
           <map class="google-map-container" zoom="15" geo-fallback-center="[25.058739, 121.554969]" center="{{searchResults[0].address || '[25.058739, 121.554969]'}}">
             <div ng-repeat="mm in searchResults track by $index">
-              <marker  position="{{mm.address}}" on-click="callDetailInfo(mm.link)" centered="true"></marker>
+              <marker  position="{{mm.address}}" on-click="callDetailInfo(mm)" centered="true"></marker>
             </div>
 
 <!--           <marker position="[40.71, -74.21]" on-click="callDetailInfo()"></marker>
