@@ -220,7 +220,7 @@ body {
 					left: -10000px;
 					top: 0;
 					height: 100%;
-					background-color: rgba($white, .8);
+					background-color: rgba(lighten($blue, 30%), .8);
 				}
 
 				&:hover::before {
@@ -274,7 +274,7 @@ body {
 				top: -12px - 99999px;
 				@include transition-property(all);
 				@include transition-duration(.5s);
-				@include box-shadow(0 99999px 300px black, 0 99999px 200px black, 0 99999px 0px black);
+				@include box-shadow(0 99999px 300px black, 0 99999px 200px black, 0 99999px 0px black, 0 99999px 300px black, 0 99999px 200px black, 0 99999px 0px black);
 			}
 		}
 
@@ -306,6 +306,7 @@ body {
 
 			&::after {
 				right: 488px;
+				@include box-shadow(0 99999px 300px black, 0 99999px 200px black, 0 99999px 0px black);
 			}
 		}
 
