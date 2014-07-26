@@ -109,21 +109,39 @@ angular.module('drfindApp')
 			//alert($scope.docName);
 
 			var par = $scope.countrySelect + '/' + $scope.departSelect; 
+			var choice;
+
+			if($scope.docClinicSelect == 0) {
+				choice = 'doctor';
+			} else if ($scope.docClinicSelect == 1) {
+				choice = 'clinic';	
+			}
 
 			var request = $http({
 				method: "GET",
 				headers: {
 					'Content-Type': 'application/x-www-form-urlencoded'
 				},
-				url: "https://doctors.firebaseio.com/clinic/" + par + '.json'
+				url: "https://doctors.firebaseio.com/" + choice + "/" + par + '.json'
 				// data: xsrf
 			});
 
 			request.success(function(data, status, headers, config) {
 				if(typeof data !== null) {
-          // $scope.markers.setMap(null);
-					$scope.searchResults = data;
+          $scope.searchResults = data;
           $scope.searchPtt();
+          // $scope.markers.setMap(null);
+					for (var i = 0; i < data.length; i++){
+					  // look for the entry with a matching `code` value
+					  if (data[i].doctor == $scope.docName){
+					    // we found it
+					    $scope.searchResults = data;
+					    //alert($scope.docName);	
+					    // obj[i].name is the matched result
+					  }
+					}
+				} else {
+
           // var centre = $scope.map.getCenter(); 
           // console.log(centre);
           // var latlng = new google.maps.LatLng(centre["k"], centre["B"]);
