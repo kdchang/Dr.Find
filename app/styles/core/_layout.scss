@@ -114,7 +114,7 @@ body {
 			bottom: 0;
 			width: 100%;
 
-			> .title {
+			> .title, > * > .title {
 				margin: 0;
 				position: absolute;
 				padding: 12px;
@@ -166,31 +166,31 @@ body {
 			}
 		}
 
-		.bottom {
-			bottom: -100px;
-			opacity: .6;
-			@include transition-property(bottom, opacity);
-			@include transition-duration(.5s);
+		// .bottom {
+		// 	bottom: -100px;
+		// 	opacity: .6;
+		// 	@include transition-property(bottom, opacity);
+		// 	@include transition-duration(.5s);
 
-			& + .map {
-				.angular-google-map-container .gm-style > .gmnoprint {
-					margin: 200px 0 100px !important;
-					@include transition-property(margin);
-					@include transition-duration(.5s);
-				}
-			}
-		}
+		// 	& + .map {
+		// 		.angular-google-map-container .gm-style > .gmnoprint {
+		// 			margin: 200px 0 100px !important;
+		// 			@include transition-property(margin);
+		// 			@include transition-duration(.5s);
+		// 		}
+		// 	}
+		// }
 
-		.bottom:hover {
-			bottom: 0;
-			opacity: 1;
+		// .bottom:hover {
+		// 	bottom: 0;
+		// 	opacity: 1;
 
-			& + .map {
-				.angular-google-map-container .gm-style > .gmnoprint {
-					margin: 200px 0 200px !important;
-				}
-			}
-		}
+		// 	& + .map {
+		// 		.angular-google-map-container .gm-style > .gmnoprint {
+		// 			margin: 200px 0 200px !important;
+		// 		}
+		// 	}
+		// }
 	}
 
 	.right {
