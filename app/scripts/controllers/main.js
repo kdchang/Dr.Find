@@ -43,6 +43,13 @@ angular.module('drfindApp')
   	// 			'link': 'http://xd'
   	// 		}]
   	// 	}]; 
+    $scope.stores = [
+      {name: "store 1"}, {name: "store 2"}, {name: "store 3"}
+    ];
+
+    $scope.fakeMap = [
+    	
+    ];
 
     $scope.map = {
       center: {
@@ -61,8 +68,8 @@ angular.module('drfindApp')
 	    // p2 = $scope.q2.promise;
 
 		p1.then(function(data){
-						  	$scope.info = data;
-						  });
+			$scope.info = data;
+		});
     	$.getJSON( "https://clinic.firebaseio.com/clinic/3701010061.json", function( data ) {
 	  // $.each( data, function( key, val ) {
 	  //   items.push( "<li id='" + key + "'>" + val + "</li>" );

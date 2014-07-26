@@ -19,7 +19,8 @@ angular
     'google-maps',
     'ui.bootstrap',
     'firebase',
-    'angular-loading-bar'
+    'angular-loading-bar',
+    'ngMap'
   ])
   .config(function ($routeProvider) {
     $routeProvider

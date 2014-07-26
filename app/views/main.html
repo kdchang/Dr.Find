@@ -16,6 +16,17 @@
     <div class="bottom">
       <h1 class="title">篩選器</h1>
       <div class="filters">
+        <map zoom="11" center="[40.74, -74.18]">
+<!--           <marker ng-repeat="m in fakeMap" position="m"></marker>  --> 
+<!--           <marker position="[40.71, -74.21]" on-click="showInfoWindow(event, 'marker-info', {store: stores[0]})"></marker>
+          <marker position="[40.72, -74.20]" on-click="showInfoWindow(event, 'marker-info', {store: stores[1]})"></marker>
+          <marker position="[40.73, -74.19]" on-mouseover="showInfoWindow(event, 'marker-info', {store: stores[2]})"></marker> -->
+          <info-window id="marker-info" style="display: none;">
+            <h1> I am an InfoWindow </h1>
+            I am here at [[this.getPosition()]]
+            and the store name is [[store.name]]
+          </info-window>
+        </map>
       </div>
     </div>
     </div>
