@@ -185,6 +185,13 @@ body {
 				right: 0;
 				// width: $map-articles-width;
 				// text-align: right;
+
+				.title {
+					top: auto;
+					left: auto;
+					bottom: 0;
+					right: 0;
+				}
 			}
 
 			.article {
