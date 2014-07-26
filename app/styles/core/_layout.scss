@@ -116,10 +116,20 @@ body {
 			width: 100%;
 
 			> .title, > * > .title {
+				@extend h1;
 				margin: 0;
 				position: absolute;
 				padding: 12px;
 				@include opacity(.32);
+				@include z-index(trigger);
+				pointer-events: none;
+			}
+
+			> .title.last, > * > .title.last {
+				top: auto;
+				left: auto;
+				bottom: 0;
+				right: 0;
 			}
 
 			.filters {
@@ -185,13 +195,6 @@ body {
 				right: 0;
 				// width: $map-articles-width;
 				// text-align: right;
-
-				.title {
-					top: auto;
-					left: auto;
-					bottom: 0;
-					right: 0;
-				}
 			}
 
 			.article {
@@ -283,6 +286,15 @@ body {
 			// background-color: #f00;
 		}
 
+		.title.first {
+			top: auto;
+			bottom: 0;
+			left: auto;
+			right: $map-articles-width + 120px - $clo;
+			@include transition-property(all);
+			@include transition-duration(.5s);
+		}
+
 		.articles:hover {
 			@include clip-path(polygon(calc(100% - #{$map-articles-width + 20px}) 0, 100% 0, 100% 100%, calc(100% - #{$map-articles-width + 20px + $sli}) 100%));
 			a { @include z-index(trigger); }
@@ -301,6 +313,13 @@ body {
 			// @include clip-path(polygon(0 0, calc(100% - #{$map-articles-width + 20px}) 0, calc(100% - #{$map-articles-width + 20px + $sli}) 100%, 0 100%));
 			@include clip-path(polygon(0 0, calc(100% - #{$map-articles-width + 20px - 14px}) 0, calc(100% - #{$map-articles-width + 20px + $sli + 32px}) 100%, 0 100%));
 			pointer-events: none;
+		}
+
+		.articles:hover ~ .title.first {
+			top: auto;
+			bottom: 0;
+			left: auto;
+			right: $map-articles-width + 120px;
 		}
 
 		// .bottom {
