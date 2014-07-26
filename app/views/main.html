@@ -207,10 +207,10 @@
       </google-map>
         <div ng-repeat="m in fakeMap">{{m.coords}}</div> -->
         <!--  -->
-          <map class="google-map-container" zoom="15" geo-fallback-center="[25.058739, 121.554969]" center="{{searchResults[0].address || '[25.058739, 121.554969]'}}" ng-switch on="choice">
+          <map class="google-map-container" zoom="15" geo-fallback-center="[25.058739, 121.554969]" center="{{searchResults[0].address || '[25.058739, 121.554969]'}}" >
             <div ng-repeat="mm in searchResults track by $index">
-              <marker ng-switch-when="clinic" position="{{mm.address}}" on-click="callClinicDetailInfo(mm.link)"></marker>
-              <marker ng-switch-when="doctor"  position="{{mm.address}}" on-click="callDoctorDetailInfo()"></marker>
+              <marker position="{{mm.address}}" on-click="callDetailInfo(mm)"></marker>
+<!--               <marker ng-switch-when="doctor"  position="{{mm.address}}" on-click="callDoctorDetailInfo()"></marker> -->
             </div>
 
 <!--           <marker position="[40.71, -74.21]" on-click="callDetailInfo()"></marker>

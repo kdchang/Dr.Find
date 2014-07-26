@@ -46,27 +46,38 @@ angular.module('drfindApp')
 		}];
 
 		// show the clinic info to the sidebar
-		$scope.callClinicDetailInfo = function(event, link) {
-			var q1 = $q.defer();
-			var p1 = q1.promise;
+		$scope.callDetailInfo = function(event, mm) {
+			if($scope.choice == 'clinic') {
+				var q1 = $q.defer();
+				var p1 = q1.promise;
 
-			p1.then(function(data) {
-				$scope.info = data;
-			});
-			$.getJSON(link, function(data) {
-
-			}).done(function(data) {
-				console.log(data);
-				q1.resolve(data);
-			})
-				.fail(function() {
-					console.log("error");
-				})
-				.always(function() {
-					console.log("complete");
-				}).complete(function() {
-					console.log("second complete");
+				p1.then(function(data) {
+					$scope.info = data;
 				});
+				$.getJSON(mm.link, function(data) {
+
+				}).done(function(data) {
+					console.log(data);
+					q1.resolve(data);
+				})
+					.fail(function() {
+						console.log("error");
+					})
+					.always(function() {
+						console.log("complete");
+					}).complete(function() {
+						console.log("second complete");
+					});
+			} else if($scope.choice == 'doctor') {
+				console.log($scope.searchResults);
+				$scope.info = {};
+				$scope.info.Name = mm.doctor;	
+				$scope.info.ClinicType = mm.department;	
+				$scope.info.Address = mm.address;	
+				$scope.info.Phone = mm.tel;	
+				$scope.$apply();
+				console.log($scope.info);
+			}
 		};
 
 		$scope.callDoctorDetailInfo = function(){
@@ -75,10 +86,7 @@ angular.module('drfindApp')
 // department: "中醫科",
 // doctor: "郭榮宗",
 // tel: "23118118"
-			$scope.info.Name = $scope.searchResults.doctor;	
-			$scope.info.ClinicType = $scope.searchResults.department;	
-			$scope.info.Address = $scope.searchResults.address;	
-			$scope.info.Phone = $scope.searchResults.tel;	
+
 		};
 
 		$scope.ptts = []
