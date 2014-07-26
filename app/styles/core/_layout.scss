@@ -125,6 +125,9 @@ body {
 			.filters {
 				padding: 6px 0;
 				width: 100%;
+				height: 100%;
+				position: relative;
+				@include z-index(map_bottom_content);
 			}
 
 			.control-group {
@@ -189,19 +192,31 @@ body {
 				// display: inline-block;
 				white-space: normal;
 				margin: 12px 6px;
-				overflow: hidden;
+				overflow: visible;
 				// width: 200px;
 				height: auto;
 				padding: 12px 10px;
-				background-color: rgba($white, .8);
 				width: $map-articles-width;
 				position: relative;
 				right: 0;
 				left: auto;
 				margin-left: auto;
 
+				&::before {
+					content: "";
+					position: absolute;
+					@include z-index(map_bottom_bg);
+					width: 20000px;
+					left: -10000px;
+					top: 0;
+					height: 100%;
+					background-color: rgba($white, .8);
+				}
+
 				> * {
+					position: relative;
 					@include ellipsis;
+					@include z-index(map_bottom_content);
 				}
 
 				> .title {
@@ -218,25 +233,33 @@ body {
 			}
 		}
 
+		$bas: 800px;
+		$sli: 100px;
+
 		.articles {
-			@include clip-path(polygon(800px 0, 100% 0, 100% 100%, 700px 100%));
+			@include clip-path(polygon(#{$bas} 0, 100% 0, 100% 100%, #{$bas - $sli} 100%));
 			@include transition-property(all);
 			@include transition-duration(.5s);
+			// background-color: #0f0;
 		}
 
 		.filters {
-			@include clip-path(polygon(0 0, 800px 0, 700px 100%, 0 100%));
+			// @include clip-path(polygon(0 0, #{$bas} 0, #{$bas - $sli} 100%, 0 100%));
+			@include clip-path(polygon(0 0, #{$bas + 23px} 0, #{$bas - $sli - 28px} 100%, 0 100%));
 			@include transition-property(all);
 			@include transition-duration(.5s);
+			// background-color: #f00;
 		}
 
 		.articles:hover {
-			@include clip-path(polygon(calc(100% - #{$map-articles-width + 20px}) 0, 100% 0, 100% 100%, calc(100% - #{$map-articles-width + 30px}) 100%));
+			@include clip-path(polygon(calc(100% - #{$map-articles-width + 20px}) 0, 100% 0, 100% 100%, calc(100% - #{$map-articles-width + 20px + $sli}) 100%));
+			a { @include z-index(trigger); }
 		}
 
 		.articles:hover ~ .filters {
-			@include clip-path(polygon(0 0, calc(100% - #{$map-articles-width + 20px}) 0, calc(100% - #{$map-articles-width + 30px}) 100%, 0 100%));
-
+			// @include clip-path(polygon(0 0, calc(100% - #{$map-articles-width + 20px}) 0, calc(100% - #{$map-articles-width + 20px + $sli}) 100%, 0 100%));
+			@include clip-path(polygon(0 0, calc(100% - #{$map-articles-width + 20px - 14px}) 0, calc(100% - #{$map-articles-width + 20px + $sli + 32px}) 100%, 0 100%));
+			pointer-events: none;
 		}
 
 		// .bottom {
