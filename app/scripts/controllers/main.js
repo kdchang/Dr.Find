@@ -68,24 +68,25 @@ angular.module('drfindApp')
 					}).complete(function() {
 						console.log("second complete");
 					});
-			} else if($scope.choice == 'doctor') {
+			} else if ($scope.choice == 'doctor') {
 				console.log($scope.searchResults);
 				$scope.info = {};
-				$scope.info.Name = mm.doctor;	
-				$scope.info.ClinicType = mm.department;	
-				$scope.info.Address = mm.address;	
-				$scope.info.Phone = mm.tel;	
+				$scope.info.Name = mm.doctor;
+				$scope.info.ClinicType = mm.department;
+				$scope.info.Address = mm.address;
+				$scope.info.Phone = mm.tel;
 				$scope.$apply();
 				console.log($scope.info);
 			}
 		};
 
-		$scope.callDoctorDetailInfo = function(){
+		<< << << < HEAD
+		$scope.callDoctorDetailInfo = function() {
 
-// address: "台北市大安區基隆路2段218號",
-// department: "中醫科",
-// doctor: "郭榮宗",
-// tel: "23118118"
+			// address: "台北市大安區基隆路2段218號",
+			// department: "中醫科",
+			// doctor: "郭榮宗",
+			// tel: "23118118"
 
 		};
 
@@ -124,6 +125,44 @@ angular.module('drfindApp')
 			});
 
 		};
+
+		$scope.ptts = []
+		$scope.searchPtt = function() {
+			$scope.ptts = []
+			var request = $http({
+				method: "GET",
+				headers: {
+					'Content-Type': 'application/x-www-form-urlencoded'
+				},
+				url: "https://doctors.firebaseio.com/ptt-drinfo/" + $scope.departSelect + ".json"
+			});
+
+			request.success(function(data, status, headers, config) {
+				if (typeof data !== null) {
+
+					// angular.forEach(data, function(value) {
+					for (var i = 0; i < 10; i++) {
+						var value = data[i];
+
+						var request = $http({
+							method: "GET",
+							headers: {
+								'Content-Type': 'application/x-www-form-urlencoded'
+							},
+							url: "https://ptt-doctor-info.firebaseio.com/list/" + value + ".json"
+						});
+
+						request.success(function(data, status, headers, config) {
+							if (typeof data !== null) {
+								$scope.ptts.push(data);
+							}
+						});
+					}
+				}
+			});
+
+		};
+
 
 		$scope.searchDoctor = function() {
 			//alert($scope.docName);
