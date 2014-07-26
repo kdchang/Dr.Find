@@ -90,12 +90,12 @@ angular.module('drfindApp')
 			// tel: "23118118"
 
 		};
-      $scope.deleteMarker = function(){
-          for(var index in $scope.markers) { 
-              $scope.markers[index].setMap(null);
-              delete $scope.markers[index];
-          }
-      }
+    $scope.deleteMarker = function(){
+        for(var index in $scope.markers) { 
+            $scope.markers[index].setMap(null);
+            delete $scope.markers[index];
+        }
+    }
 
 		$scope.ptts = []
 		$scope.searchPtt = function() {
@@ -144,78 +144,7 @@ angular.module('drfindApp')
 
 		};
 
-		$scope.ptts = []
-		$scope.searchPtt = function() {
-			$scope.ptts = []
-			var request = $http({
-				method: "GET",
-				headers: {
-					'Content-Type': 'application/x-www-form-urlencoded'
-				},
-				url: "https://doctors.firebaseio.com/ptt-drinfo/" + $scope.departSelect + ".json"
-			});
 
-			request.success(function(data, status, headers, config) {
-				if (typeof data !== null) {
-
-					angular.forEach(data, function(value) {
-
-						var request = $http({
-							method: "GET",
-							headers: {
-								'Content-Type': 'application/x-www-form-urlencoded'
-							},
-							url: "https://ptt-doctor-info.firebaseio.com/list/" + value + ".json"
-						});
-
-						request.success(function(data, status, headers, config) {
-							if (typeof data !== null) {
-								//console.log(data);
-								$scope.ptts.push(data);
-							}
-						});
-					});
-				}
-			});
-
-		};
-
-		$scope.ptts = []
-		$scope.searchPtt = function() {
-			$scope.ptts = []
-			var request = $http({
-				method: "GET",
-				headers: {
-					'Content-Type': 'application/x-www-form-urlencoded'
-				},
-				url: "https://doctors.firebaseio.com/ptt-drinfo/" + $scope.departSelect + ".json"
-			});
-
-			request.success(function(data, status, headers, config) {
-				if (typeof data !== null) {
-
-					// angular.forEach(data, function(value) {
-					for (var i = 0; i < 10; i++) {
-						var value = data[i];
-
-						var request = $http({
-							method: "GET",
-							headers: {
-								'Content-Type': 'application/x-www-form-urlencoded'
-							},
-							url: "https://ptt-doctor-info.firebaseio.com/list/" + value + ".json"
-						});
-
-						request.success(function(data, status, headers, config) {
-							if (typeof data !== null) {
-								$scope.ptts.push(data);
-							}
-						});
-					}
-				}
-			});
-
-		};
 
 
 		$scope.searchDoctor = function() {
@@ -258,6 +187,7 @@ angular.module('drfindApp')
 							// obj[i].name is the matched result
 						}
 					}
+          $scope.$apply();
 				} else {
 
 					// var centre = $scope.map.getCenter(); 
