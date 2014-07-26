@@ -110,7 +110,7 @@ body {
 			height: $map-bottom-height;
 			position: absolute;
 			@include z-index(map_bottom);
-			background-color: rgba($base-backgroundColor, .5);
+			background-color: rgba($base-backgroundColor, .7);
 			// overflow: hidden;
 			bottom: 0;
 			width: 100%;
@@ -213,6 +213,10 @@ body {
 					background-color: rgba($white, .8);
 				}
 
+				&:hover::before {
+					background-color: rgba($red, .8);
+				}
+
 				> * {
 					position: relative;
 					@include ellipsis;
@@ -233,19 +237,40 @@ body {
 			}
 		}
 
-		$bas: 800px;
+		$clo: 250px;
 		$sli: 100px;
 
 		.articles {
-			@include clip-path(polygon(#{$bas} 0, 100% 0, 100% 100%, #{$bas - $sli} 100%));
+			@include clip-path(polygon(calc(100% - #{$map-articles-width + 20px - $clo}) 0, 100% 0, 100% 100%, calc(100% - #{$map-articles-width + 20px + $sli - $clo}) 100%));
 			@include transition-property(all);
 			@include transition-duration(.5s);
 			// background-color: #0f0;
+			opacity: .5;
+
+			.article {
+				right: - $clo * 0.6;
+				@include transition-property(all);
+				@include transition-duration(.5s);
+
+				&::after {
+					content: "";
+					position: absolute;
+					@include z-index(map_bottom_content);
+					background-color: #f00;
+					height: 100%;
+					width: 40px;
+					right: 352px;
+					top: -12px;
+					@include transition-property(all);
+					@include transition-duration(.5s);
+					@include box-shadow(0 0 300px black, 0 0 200px black, 0 0 0px black);
+				}
+			}
 		}
 
 		.filters {
 			// @include clip-path(polygon(0 0, #{$bas} 0, #{$bas - $sli} 100%, 0 100%));
-			@include clip-path(polygon(0 0, #{$bas + 23px} 0, #{$bas - $sli - 28px} 100%, 0 100%));
+			@include clip-path(polygon(0 0, calc(100% - #{$map-articles-width + 20px - 14px - $clo}) 0, calc(100% - #{$map-articles-width + 20px + $sli + 32px - $clo}) 100%, 0 100%));
 			@include transition-property(all);
 			@include transition-duration(.5s);
 			// background-color: #f00;
@@ -254,6 +279,17 @@ body {
 		.articles:hover {
 			@include clip-path(polygon(calc(100% - #{$map-articles-width + 20px}) 0, 100% 0, 100% 100%, calc(100% - #{$map-articles-width + 20px + $sli}) 100%));
 			a { @include z-index(trigger); }
+			opacity: 1;
+
+			.article {
+				right: 0;
+
+				&::after {
+					right: 488px;
+				}
+			}
+
+
 		}
 
 		.articles:hover ~ .filters {
