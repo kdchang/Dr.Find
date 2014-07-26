@@ -46,7 +46,7 @@ angular.module('drfindApp')
 		}];
 
 		// show the clinic info to the sidebar
-		$scope.callDetailInfo = function(event, link) {
+		$scope.callClinicDetailInfo = function(event, link) {
 			var q1 = $q.defer();
 			var p1 = q1.promise;
 
@@ -69,52 +69,64 @@ angular.module('drfindApp')
 				});
 		};
 
-    $scope.ptts = []
-    $scope.searchPtt = function(){
-      $scope.ptts = []
-      var request = $http({
-        method: "GET",
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded'
-        },
-        url: "https://doctors.firebaseio.com/ptt-drinfo/"+$scope.departSelect+".json"
-      });
+		$scope.callDoctorDetailInfo = function(){
 
-      request.success(function(data, status, headers, config) {
-        if(typeof data !== null) {
+// address: "台北市大安區基隆路2段218號",
+// department: "中醫科",
+// doctor: "郭榮宗",
+// tel: "23118118"
+			$scope.info.Name = $scope.searchResults.doctor;	
+			$scope.info.ClinicType = $scope.searchResults.department;	
+			$scope.info.Address = $scope.searchResults.address;	
+			$scope.info.Phone = $scope.searchResults.tel;	
+		};
 
-          angular.forEach(data, function(value) {
+		$scope.ptts = []
+		$scope.searchPtt = function() {
+			$scope.ptts = []
+			var request = $http({
+				method: "GET",
+				headers: {
+					'Content-Type': 'application/x-www-form-urlencoded'
+				},
+				url: "https://doctors.firebaseio.com/ptt-drinfo/" + $scope.departSelect + ".json"
+			});
 
-            var request = $http({
-              method: "GET",
-              headers: {
-                'Content-Type': 'application/x-www-form-urlencoded'
-              },
-              url: "https://ptt-doctor-info.firebaseio.com/list/"+value+".json"
-            });
+			request.success(function(data, status, headers, config) {
+				if (typeof data !== null) {
 
-            request.success(function(data, status, headers, config) {
-              if(typeof data !== null) {
-                console.log(data);
-                $scope.ptts.push(data);
-              }
-            });
-          });
-        }
-      });
+					angular.forEach(data, function(value) {
 
-    };
+						var request = $http({
+							method: "GET",
+							headers: {
+								'Content-Type': 'application/x-www-form-urlencoded'
+							},
+							url: "https://ptt-doctor-info.firebaseio.com/list/" + value + ".json"
+						});
+
+						request.success(function(data, status, headers, config) {
+							if (typeof data !== null) {
+								//console.log(data);
+								$scope.ptts.push(data);
+							}
+						});
+					});
+				}
+			});
+
+		};
 
 		$scope.searchDoctor = function() {
 			//alert($scope.docName);
 
-			var par = $scope.countrySelect + '/' + $scope.departSelect; 
-			var choice;
+			var par = $scope.countrySelect + '/' + $scope.departSelect;
+			$scope.choice;
 
-			if($scope.docClinicSelect == 0) {
-				choice = 'doctor';
+			if ($scope.docClinicSelect == 0) {
+				$scope.choice = 'doctor';
 			} else if ($scope.docClinicSelect == 1) {
-				choice = 'clinic';	
+				$scope.choice = 'clinic';
 			}
 
 			var request = $http({
@@ -122,36 +134,36 @@ angular.module('drfindApp')
 				headers: {
 					'Content-Type': 'application/x-www-form-urlencoded'
 				},
-				url: "https://doctors.firebaseio.com/" + choice + "/" + par + '.json'
+				url: "https://doctors.firebaseio.com/" + $scope.choice + "/" + par + '.json'
 				// data: xsrf
 			});
 
 			request.success(function(data, status, headers, config) {
-				if(typeof data !== null) {
-          $scope.searchResults = data;
-          $scope.searchPtt();
-          // $scope.markers.setMap(null);
-					for (var i = 0; i < data.length; i++){
-					  // look for the entry with a matching `code` value
-					  if (data[i].doctor == $scope.docName){
-					    // we found it
-					    $scope.searchResults = data;
-					    //alert($scope.docName);	
-					    // obj[i].name is the matched result
-					  }
+				if (typeof data !== null) {
+					$scope.searchResults = data;
+					$scope.searchPtt();
+					// $scope.markers.setMap(null);
+					for (var i = 0; i < data.length; i++) {
+						// look for the entry with a matching `code` value
+						if (data[i].doctor == $scope.docName) {
+							// we found it
+							$scope.searchResults = data;
+							//alert($scope.docName);	
+							// obj[i].name is the matched result
+						}
 					}
 				} else {
 
-          // var centre = $scope.map.getCenter(); 
-          // console.log(centre);
-          // var latlng = new google.maps.LatLng(centre["k"], centre["B"]);
-          // console.log(latlng);
-          // $scope.map.setCenter(latlng);
-          
-          // console.log($scope.markers[0]);
-    //       $scope.$on('markersInitialized', function(event, map) {
-    //         console.log("mapInitialized");
-    //       });
+					// var centre = $scope.map.getCenter(); 
+					// console.log(centre);
+					// var latlng = new google.maps.LatLng(centre["k"], centre["B"]);
+					// console.log(latlng);
+					// $scope.map.setCenter(latlng);
+
+					// console.log($scope.markers[0]);
+					//       $scope.$on('markersInitialized', function(event, map) {
+					//         console.log("mapInitialized");
+					//       });
 				}
 			});
 
