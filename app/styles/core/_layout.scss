@@ -357,12 +357,13 @@ body {
 		@include box-shadow(-1px 0px 0 rgba($black, .5));
 	}
 
-	.angular-google-map {
+	.google-map {
 		height: 100%;
 	}
 
-	.angular-google-map-container {
+	.google-map-container {
 		height: calc(100% + #{$map-bottom-height*2});
+		width: 100%;
 		position: relative;
 		top: - $map-bottom-height;
 		// height: 100%;

@@ -240,7 +240,7 @@
         <div class="title first">搜尋條件</div>
         <div class="title last">推薦文章</div>
       </div>
-      <div class="map" ng-model="fakeMap">
+      <div class="map google-map" ng-model="fakeMap">
 <!--         <google-map center="map.center" zoom="map.zoom" draggable="true">
           <marker coords="map.center" click="callDetailInfo()">
           </marker>
@@ -251,7 +251,7 @@
           </markers>
       </google-map>
         <div ng-repeat="m in fakeMap">{{m.coords}}</div> -->
-        <map zoom="15" center="{{fakeMap[0].address}}">
+        <map class="google-map-container" zoom="15" center="{{fakeMap[0].address}}">
           <div ng-repeat="mm in fakeMap">
             <marker  position="{{mm.address}}" on-click="callDetailInfo(mm.link)"></marker>
           </div>
