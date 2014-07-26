@@ -97,7 +97,6 @@ angular.module('drfindApp')
 
             request.success(function(data, status, headers, config) {
               if(typeof data !== null) {
-                console.log(data);
                 $scope.ptts.push(data);
               }
             });
