@@ -13,6 +13,16 @@ angular.module('drfindApp')
     // org-code: 依機關種類 (https://drfind.firebaseio.com/org-code.json)
     // country-code: 依縣分區 (https://drfind.firebaseio.com/country-code.json)
     // jquery .ajax
+
+    var gotPosition = function(position) {
+      console.log(position.coords.latitude);
+      console.log(position.coords.longitude);
+    }
+
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(gotPosition);
+    }
+
     var ref = new Firebase('https://drfind.firebaseio.com/L');
     $scope.makers = $firebase(ref);
     // $scope.fakeMap =
@@ -42,12 +52,12 @@ angular.module('drfindApp')
   	// 			'click': 'callDoc',
   	// 			'link': 'http://xd'
   	// 		}]
-  	// 	}]; 
+  	// 	}];
     $scope.stores = [
       {name: "store 1"}, {name: "store 2"}, {name: "store 3"}
     ];
 
-    $scope.fakeMap = [{   
+    $scope.fakeMap = [{
          'id' : '12348',
          'name': '宏國牙醫診所',
          'coords': [25.058856, 121.554862],
@@ -76,7 +86,7 @@ angular.module('drfindApp')
       // coords:
     };
     $scope.callDetailInfo = function(event, link){
-      console.log('XDDDDD');	
+      console.log('XDDDDD');
       console.log(link)
       var q1 = $q.defer();
       // q2 = $scope.q2 = $q.defer(),
@@ -102,7 +112,7 @@ angular.module('drfindApp')
 			console.log( "complete" );
 		}).complete(function() {
   			console.log( "second complete" );
-		});	       
+		});
     }
 
     $scope.token = "";
@@ -140,7 +150,7 @@ angular.module('drfindApp')
       var xsrf = $.param({
         token: $scope.token,
         keyword: keyword
-        });    
+        });
       var request = $http({
         method: "POST",
         headers: {'Content-Type': 'application/x-www-form-urlencoded'},
