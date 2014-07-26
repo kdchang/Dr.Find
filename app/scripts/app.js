@@ -15,13 +15,19 @@ angular
     'ngResource',
     'ngRoute',
     'ngSanitize',
-    'ngTouch'
+    'ngTouch',
+    'google-maps',
+    'ui.bootstrap'
   ])
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {
         templateUrl: 'views/main.html',
         controller: 'MainCtrl'
+      })
+      .when('/visualize', {
+        templateUrl: 'views/visualize.html',
+        controller: 'VisualizeCtrl'
       })
       .when('/about', {
         templateUrl: 'views/about.html',

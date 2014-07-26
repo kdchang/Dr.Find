@@ -19,25 +19,42 @@
     <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
-
-    <!-- Add your site or application content here -->
-    <div class="container">
-      <div class="header">
-        <ul class="nav nav-pills pull-right">
-          <li class="active"><a ng-href="#">Home</a></li>
-          <li><a ng-href="#/about">About</a></li>
-          <li><a ng-href="#">Contact</a></li>
-        </ul>
-        <h3 class="text-muted">Dr.Find</h3>
+    <div class="navbar navbar-fixed-top" ng-controller="NavCtrl">
+      <div class="navbar-header"><a class="navbar-brand" href="#">Dr.Find</a>
+        <a class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </a>
       </div>
-
-      <div ng-view=""></div>
-
-      <div class="footer">
-        <p><span class="glyphicon glyphicon-heart"></span> from the Yeoman team</p>
+      <div class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+          <li ng-class="getNavClass('/')"><a ng-href="#">找看病</a></li>
+          <li ng-class="getNavClass('/visualize')"><a ng-href="#/visualize">視覺化</a></li>
+          <li ng-class="getNavClass('/about')"><a ng-href="#/about">關於</a></li>
+        </ul>
+        <form class="navbar-form">
+          <div class="form-group" style="display:inline;">
+            <div class="input-group">
+              <div class="input-group-btn">
+                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">醫師 <span class="caret"></span></button>
+                <ul class="dropdown-menu">
+                  <li><a href="#">醫師</a></li>
+                  <li><a href="#">醫療院所</a></li>
+                </ul>
+              </div>
+              <input type="text" class="form-control" placeholder="醫師姓名">
+              <span class="input-group-addon"><span class="glyphicon glyphicon-search"></span> </span>
+            </div>
+          </div>
+        </form>
       </div>
     </div>
 
+    <!-- 載入進度 -->
+    <progressbar class="loading-progress" max="100" value="50"></progressbar>
+    <!-- /載入進度 -->
+    <div class="view" ng-view=""></div>
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
      <script>
@@ -58,6 +75,7 @@
     <!-- endbuild -->
 
     <!-- build:js(.) scripts/vendor.js -->
+    <script src='//maps.googleapis.com/maps/api/js?sensor=false'></script>
     <!-- bower:js -->
     <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="bower_components/angular/angular.js"></script>
@@ -69,13 +87,18 @@
     <script src="bower_components/angular-animate/angular-animate.js"></script>
     <script src="bower_components/angular-touch/angular-touch.js"></script>
     <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="bower_components/lodash/dist/lodash.compat.js"></script>
+    <script src="bower_components/angular-google-maps/dist/angular-google-maps.js"></script>
+    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
-        <!-- build:js({.tmp,app}) scripts/scripts.js -->
-        <script src="scripts/app.js"></script>
-        <script src="scripts/controllers/main.js"></script>
-        <script src="scripts/controllers/about.js"></script>
-        <!-- endbuild -->
+    <!-- build:js({.tmp,app}) scripts/scripts.js -->
+    <script src="scripts/app.js"></script>
+    <script src="scripts/controllers/main.js"></script>
+    <script src="scripts/controllers/visualize.js"></script>
+    <script src="scripts/controllers/about.js"></script>
+    <script src="scripts/controllers/nav.js"></script>
+    <!-- endbuild -->
 </body>
 </html>

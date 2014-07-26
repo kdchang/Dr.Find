@@ -1,0 +1,71 @@
+// *************************************
+//
+//   Base
+//   -> Base-level tags (body, p, etc.)
+//
+// *************************************
+
+html {
+	font-size: $base-fontSize;
+}
+
+body {
+	background-color: $base-backgroundColor;
+	color: $base-color;
+	font-family: $base-fontFamily;
+	font-size: 100%;
+	line-height: $base-lineHeight;
+}
+
+// -------------------------------------
+//   Block Content
+// -------------------------------------
+
+p {
+	font-size: rem($base-fontSize);
+}
+
+// -------------------------------------
+//   Inline Content
+// -------------------------------------
+
+a {
+	position: relative;
+	color: $base-link-color;
+	text-decoration: none;
+	@include transition-property(color);
+	@include transition-duration(.3s);
+
+	&::after {
+		content: "";
+		position: absolute;
+		width: 0%;
+		height: 1px;
+		left: 50%;
+		bottom: -2px;
+		background-color: lighten($base-link-color, 16%);
+		opacity: 0;
+		@include transition-property(left, width, opacity);
+		@include transition-duration(.3s);
+		@include transition-delay(.3s);
+	}
+
+	&:hover,
+	&:focus {
+		text-decoration: none;
+		color: lighten($base-link-color, 16%);
+
+		&::after {
+			width: 100%;
+			left: 0%;
+			opacity: 1;
+			@include transition-delay(0);
+		}
+	}
+
+	.pager &, .nav &, .map &, .dropdown-menu &, .button &, &.button {
+		&::after {
+			content: none;
+		}
+	}
+}
