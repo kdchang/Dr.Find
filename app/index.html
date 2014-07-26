@@ -35,7 +35,7 @@
           <li ng-class="getNavClass('/visualize')"><a ng-href="#/visualize">視覺化</a></li>
           <li ng-class="getNavClass('/about')"><a ng-href="#/about">關於</a></li>
         </ul>
-        <form class="navbar-form">
+        <form class="navbar-form" ng-submit="searchDoctor()">
           <div class="form-group" style="display:inline;">
             <div class="input-group">
               <div class="input-group-btn">
@@ -45,8 +45,11 @@
                   <li><a href="#">醫療院所</a></li>
                 </ul>
               </div>
-              <input type="text" class="form-control" placeholder="醫師姓名">
-              <span class="input-group-addon"><span class="glyphicon glyphicon-search"></span> </span>
+              <input ng-model="docName" name="docName" type="text" class="form-control" placeholder="醫師姓名">
+<!--               <span class="input-group-addon"><span class="glyphicon glyphicon-search"></span> </span> -->
+              <span class="input-group-btn">
+                <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span> </span></button>
+              </span>
             </div>
           </div>
         </form>
