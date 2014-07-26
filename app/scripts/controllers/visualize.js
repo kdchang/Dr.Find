@@ -9,9 +9,16 @@
  */
 angular.module('drfindApp')
   .controller('VisualizeCtrl', function ($scope) {
-    $scope.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
+    // $scope.awesomeThings = [
+    //   'HTML5 Boilerplate',
+    //   'AngularJS',
+    //   'Karma'
+    // ];
+    $scope.map = {
+    	center: {
+    		latitude: 25,
+    		longitude: 121
+    	},
+    	zoom: 10
+    };
   });

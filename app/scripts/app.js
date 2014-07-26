@@ -18,7 +18,9 @@ angular
     'ngTouch',
     'google-maps',
     'ui.bootstrap',
-    'ui.select2'
+    'ui.select2',
+    'firebase',
+    'angular-loading-bar'
   ])
   .config(function ($routeProvider) {
     $routeProvider
