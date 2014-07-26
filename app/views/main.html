@@ -3,10 +3,10 @@
     <div class="left">
       <div class="bottom">
         <div class="articles" >
-          <article class="article" ng-repeat="ptt in ptts  | limitTo: 10 | orderBy:ptt.Time">
+          <article class="article" ng-repeat="ptt in ptts track by $index">
             <h1 class="title"> {{ptt.Title}} </h1>
             <time class="date"> {{ptt.Time}} </time>
-            <a href=" {{ptt.Link}} "> Link</a>
+            <a ng-href=" {{ptt.Link}} " target="_blank"> Link</a>
           </article>
         </div>
         <div class="filters">
@@ -209,7 +209,7 @@
         <!--  -->
           <map class="google-map-container" zoom="15" geo-fallback-center="[25.058739, 121.554969]" center="{{searchResults[0].address || '[25.058739, 121.554969]'}}">
             <div ng-repeat="mm in searchResults track by $index">
-              <marker  position="{{mm.address}}" on-click="callDetailInfo(mm.link)" centered="true"></marker>
+              <marker  position="{{mm.address}}" on-click="callDetailInfo(mm)" centered="true"></marker>
             </div>
 
 <!--           <marker position="[40.71, -74.21]" on-click="callDetailInfo()"></marker>
@@ -232,87 +232,123 @@
 <!--         <div ng-model="makers">{{makers}}</div> -->
 <!-- {"Address":"台北市松山區民生東路５段２４３號","ClinicType":"診所","Field":["牙科 "],"Id":"3701010061","Name":"政雄牙醫診所","Note":"春節休診1/30-2/4","Open":[[1,1,1,1,1,1,0],[1,1,1,1,1,0,0],[1,1,1,1,1,0,0]],"Phone":"02-27647144","Service":["門診診療","兒童牙齒預防保健 "],"Type":"牙醫一般診所"} -->
         <!-- 搜尋結果項目 -->
-        <div ng-model="info" class="result show">
-          <article class="info hospital" itemscope="" itemtype="http://schema.org/Hospital" style="background-image: url(http://maps.googleapis.com/maps/api/streetview?size=800x800&location=25.024682,121.54287399999998&fov=90&heading=62.398044771573495);">
-            <div class="panel about">
-              <div class="panel-heading"><h2 class="panel-title">
-                <a href="">簡介</a>
-              </h2></div>
-              <div class="panel-body">
-                <div class="name" itemprop="name"><a href="">{{info.Name}}</a></div>
-                <div class="specialty" itemprop="medicalSpecialty">{{info.ClinicType}}</div>
-                <div class="description" itemprop="description" ><span ng-repeat="service in info.Service">{{service|limitTo:2}} </span></div>
-                <div class="address" itemprop="address">{{info.Address}}</div>
-                <div class="telephone" itemprop="telephone">{{info.Phone}}</div>
-                <div class="email" itemprop="email">{{}}</div>
+        <div ng-switch on="choice">
+          <div ng-switch-when="clinic" ng-model="info" class="result show">
+            <article class="info hospital" itemscope="" itemtype="http://schema.org/Hospital" style="background-image: url(http://maps.googleapis.com/maps/api/streetview?size=800x800&location=25.024682,121.54287399999998&fov=90&heading=62.398044771573495);">
+              <div class="panel about">
+                <div class="panel-heading"><h2 class="panel-title">
+                  <a href="">簡介</a>
+                </h2></div>
+                <div class="panel-body">
+                  <div class="name" itemprop="name"><a href="">{{info.Name}}</a></div>
+                  <div class="specialty" itemprop="medicalSpecialty">{{info.ClinicType}}</div>
+                  <div class="description" itemprop="description" ><span ng-repeat="service in info.Service">{{service|limitTo:2}} </span></div>
+                  <div class="address" itemprop="address">{{info.Address}}</div>
+                  <div class="telephone" itemprop="telephone">{{info.Phone}}</div>
+                  <div class="email" itemprop="email">{{}}</div>
+                </div>
               </div>
-            </div>
 
-            <div class="panel panel-default opening-hours">
-              <div class="panel-heading"><h2 class="panel-title">
-                <a href="">看診時間</a>
-              </h2></div>
-              <div class="panel-body">
-                  <table class="table table-hover table-striped">
-                    <tr>
-                      <td></td>
-                      <td>一</td>
-                      <td>二</td>
-                      <td>三</td>
-                      <td>四</td>
-                      <td>五</td>
-                      <td>六</td>
-                      <td>日</td>
-                    </tr>
-                    <tr>
+              <div class="panel panel-default opening-hours">
+                <div class="panel-heading"><h2 class="panel-title">
+                  <a href="">看診時間</a>
+                </h2></div>
+                <div class="panel-body">
+                    <table class="table table-hover table-striped">
+                      <tr>
+                        <td></td>
+                        <td>一</td>
+                        <td>二</td>
+                        <td>三</td>
+                        <td>四</td>
+                        <td>五</td>
+                        <td>六</td>
+                        <td>日</td>
+                      </tr>
+                      <tr>
 
-                      <td>早</td>
-                      <td><span ng-if="info.Open[0][0] == 1" class="glyphicon glyphicon-ok"></span></td>
-                      <td><span ng-if="info.Open[0][1] == 1" class="glyphicon glyphicon-ok"></span></td>
-                      <td><span ng-if="info.Open[0][2] == 1" class="glyphicon glyphicon-ok"></span></td>
-                      <td><span ng-if="info.Open[0][3] == 1" class="glyphicon glyphicon-ok"></span></td>
-                      <td><span ng-if="info.Open[0][4] == 1" class="glyphicon glyphicon-ok"></span></td>
-                      <td><span ng-if="info.Open[0][5] == 1" class="glyphicon glyphicon-ok"></span></td>
-                      <td><span ng-if="info.Open[0][6] == 1" class="glyphicon glyphicon-ok"></span></td>
-                    </tr>
-                    <tr>
-                      <td>中</td>
-                      <td><span ng-if="info.Open[1][0] == 1" class="glyphicon glyphicon-ok"></span></td>
-                      <td><span ng-if="info.Open[1][1] == 1" class="glyphicon glyphicon-ok"></span></td>
-                      <td><span ng-if="info.Open[1][2] == 1" class="glyphicon glyphicon-ok"></span></td>
-                      <td><span ng-if="info.Open[1][3] == 1" class="glyphicon glyphicon-ok"></span></td>
-                      <td><span ng-if="info.Open[1][4] == 1" class="glyphicon glyphicon-ok"></span></td>
-                      <td><span ng-if="info.Open[1][5] == 1" class="glyphicon glyphicon-ok"></span></td>
-                      <td><span ng-if="info.Open[1][6] == 1" class="glyphicon glyphicon-ok"></span></td>
-                    </tr>
-                    <tr>
-                      <td>晚</td>
-                      <td><span ng-if="info.Open[1][0] == 1" class="glyphicon glyphicon-ok"></span></td>
-                      <td><span ng-if="info.Open[1][1] == 1" class="glyphicon glyphicon-ok"></span></td>
-                      <td><span ng-if="info.Open[1][2] == 1" class="glyphicon glyphicon-ok"></span></td>
-                      <td><span ng-if="info.Open[1][3] == 1" class="glyphicon glyphicon-ok"></span></td>
-                      <td><span ng-if="info.Open[1][4] == 1" class="glyphicon glyphicon-ok"></span></td>
-                      <td><span ng-if="info.Open[1][5] == 1" class="glyphicon glyphicon-ok"></span></td>
-                      <td><span ng-if="info.Open[1][6] == 1" class="glyphicon glyphicon-ok"></span></td>
-                    </tr>
-                  </table>
+                        <td>早</td>
+                        <td><span ng-if="info.Open[0][0] == 1" class="glyphicon glyphicon-ok"></span></td>
+                        <td><span ng-if="info.Open[0][1] == 1" class="glyphicon glyphicon-ok"></span></td>
+                        <td><span ng-if="info.Open[0][2] == 1" class="glyphicon glyphicon-ok"></span></td>
+                        <td><span ng-if="info.Open[0][3] == 1" class="glyphicon glyphicon-ok"></span></td>
+                        <td><span ng-if="info.Open[0][4] == 1" class="glyphicon glyphicon-ok"></span></td>
+                        <td><span ng-if="info.Open[0][5] == 1" class="glyphicon glyphicon-ok"></span></td>
+                        <td><span ng-if="info.Open[0][6] == 1" class="glyphicon glyphicon-ok"></span></td>
+                      </tr>
+                      <tr>
+                        <td>中</td>
+                        <td><span ng-if="info.Open[1][0] == 1" class="glyphicon glyphicon-ok"></span></td>
+                        <td><span ng-if="info.Open[1][1] == 1" class="glyphicon glyphicon-ok"></span></td>
+                        <td><span ng-if="info.Open[1][2] == 1" class="glyphicon glyphicon-ok"></span></td>
+                        <td><span ng-if="info.Open[1][3] == 1" class="glyphicon glyphicon-ok"></span></td>
+                        <td><span ng-if="info.Open[1][4] == 1" class="glyphicon glyphicon-ok"></span></td>
+                        <td><span ng-if="info.Open[1][5] == 1" class="glyphicon glyphicon-ok"></span></td>
+                        <td><span ng-if="info.Open[1][6] == 1" class="glyphicon glyphicon-ok"></span></td>
+                      </tr>
+                      <tr>
+                        <td>晚</td>
+                        <td><span ng-if="info.Open[1][0] == 1" class="glyphicon glyphicon-ok"></span></td>
+                        <td><span ng-if="info.Open[1][1] == 1" class="glyphicon glyphicon-ok"></span></td>
+                        <td><span ng-if="info.Open[1][2] == 1" class="glyphicon glyphicon-ok"></span></td>
+                        <td><span ng-if="info.Open[1][3] == 1" class="glyphicon glyphicon-ok"></span></td>
+                        <td><span ng-if="info.Open[1][4] == 1" class="glyphicon glyphicon-ok"></span></td>
+                        <td><span ng-if="info.Open[1][5] == 1" class="glyphicon glyphicon-ok"></span></td>
+                        <td><span ng-if="info.Open[1][6] == 1" class="glyphicon glyphicon-ok"></span></td>
+                      </tr>
+                    </table>
+                </div>
               </div>
-            </div>
 
-            <div class="panel panel-default opening-hours">
-              <div class="panel-heading"><h2 class="panel-title">
-                <a href="">看診醫師</a>
-              </h2></div>
-              <div class="panel-body">
-                只要把話匣開上，她多疼你！我心裏卻并不快爽；因為不僅見著他使我想起你，與你一撮的遺灰，等你媽與大大都上了床，萊因河與揚子江，我竟想嚴格的取締，作客山中的妙處，你在時我不知愛惜，在這道上遭受的，我才覺著骨肉的關連？她們不僅永遠把你放在她們心坎的底裏，苦惱時有安慰，但我想借這悼念你的機會，是貝德花芬是槐格納你就愛，我心頭便湧起了不少的感想；我的話你是永遠聽不著了，許是悵惘。
-                <hr>
-                只要把話匣開上，她多疼你！我心裏卻并不快爽；因為不僅見著他使我想起你，與你一撮的遺灰，等你媽與大大都上了床，萊因河與揚子江，我竟想嚴格的取締，作客山中的妙處，你在時我不知愛惜，在這道上遭受的，我才覺著骨肉的關連？她們不僅永遠把你放在她們心坎的底裏，苦惱時有安慰，但我想借這悼念你的機會，是貝德花芬是槐格納你就愛，我心頭便湧起了不少的感想；我的話你是永遠聽不著了，許是悵惘。
-                <hr>
+              <div class="panel panel-default opening-hours">
+                <div class="panel-heading"><h2 class="panel-title">
+                  <a href="">看診醫師</a>
+                </h2></div>
+                <div class="panel-body">
+                  只要把話匣開上，她多疼你！我心裏卻并不快爽；因為不僅見著他使我想起你，與你一撮的遺灰，等你媽與大大都上了床，萊因河與揚子江，我竟想嚴格的取締，作客山中的妙處，你在時我不知愛惜，在這道上遭受的，我才覺著骨肉的關連？她們不僅永遠把你放在她們心坎的底裏，苦惱時有安慰，但我想借這悼念你的機會，是貝德花芬是槐格納你就愛，我心頭便湧起了不少的感想；我的話你是永遠聽不著了，許是悵惘。
+                  <hr>
+                  只要把話匣開上，她多疼你！我心裏卻并不快爽；因為不僅見著他使我想起你，與你一撮的遺灰，等你媽與大大都上了床，萊因河與揚子江，我竟想嚴格的取締，作客山中的妙處，你在時我不知愛惜，在這道上遭受的，我才覺著骨肉的關連？她們不僅永遠把你放在她們心坎的底裏，苦惱時有安慰，但我想借這悼念你的機會，是貝德花芬是槐格納你就愛，我心頭便湧起了不少的感想；我的話你是永遠聽不著了，許是悵惘。
+                  <hr>
+                </div>
               </div>
-            </div>
 
-          </article>
-        </div>
+            </article>
+          </div>
+
+
+          <div ng-switch-when="doctor" ng-model="info" class="result show">
+            <article class="info hospital" itemscope="" itemtype="http://schema.org/Hospital" style="background-image: url(http://maps.googleapis.com/maps/api/streetview?size=800x800&location=25.024682,121.54287399999998&fov=90&heading=62.398044771573495);">
+              <div class="panel about">
+                <div class="panel-heading"><h2 class="panel-title">
+                  <a href="">簡介</a>
+                </h2></div>
+                <div class="panel-body">
+                  <div class="name" itemprop="name"><a href="">{{dinfo.Name}}</a></div>
+                  <div class="specialty" itemprop="medicalSpecialty">{{dinfo.ClinicType}}</div>
+                  <div class="description" itemprop="description" ><span ng-repeat="service in dinfo.Service">{{service|limitTo:2}} </span></div>
+                  <div class="address" itemprop="address">{{dinfo.Address}}</div>
+                  <div class="telephone" itemprop="telephone">{{dinfo.Phone}}</div>
+                  <div class="email" itemprop="email">{{}}</div>
+                </div>
+              </div>
+          </div>
+
+          <div ng-switch-default ng-model="info" class="result show">
+            <article class="info hospital" itemscope="" itemtype="http://schema.org/Hospital" style="background-image: url(http://maps.googleapis.com/maps/api/streetview?size=800x800&location=25.024682,121.54287399999998&fov=90&heading=62.398044771573495);">
+              <div class="panel about">
+                <div class="panel-heading"><h2 class="panel-title">
+                  <a href="">簡介</a>
+                </h2></div>
+                <div class="panel-body">
+                  <div class="name" itemprop="name"><a href="">{{dinfo.Name}}</a></div>
+                  <div class="specialty" itemprop="medicalSpecialty">{{dinfo.ClinicType}}</div>
+                  <div class="description" itemprop="description" ><span ng-repeat="service in dinfo.Service">{{service|limitTo:2}} </span></div>
+                  <div class="address" itemprop="address">{{dinfo.Address}}</div>
+                  <div class="telephone" itemprop="telephone">{{dinfo.Phone}}</div>
+                  <div class="email" itemprop="email">{{}}</div>
+                </div>
+              </div>
+          </div>
         <!-- /搜尋結果項目 -->
 
       </div>
