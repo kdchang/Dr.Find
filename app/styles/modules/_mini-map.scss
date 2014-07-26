@@ -1,0 +1,59 @@
+// *************************************
+//
+//   Module
+//   -> This is an example module
+//
+// *************************************
+
+.mini-map {
+
+	path {
+		fill: #F9F3B1;
+		stroke: #000000;
+		stroke-width: 2;
+		stroke-linecap: round;
+		stroke-linejoin: round;
+	}
+
+	.h, .h path {
+		fill: red;
+	}
+
+	g:hover {
+		cursor: pointer;
+
+		path {
+			fill: red;
+		}
+
+		&::after {
+			content: "asdfasdf";
+		}
+	}
+}
+
+// -------------------------------------
+//   Modifiers
+// -------------------------------------
+
+// .module--modifier
+
+// -------------------------------------
+//   States
+// -------------------------------------
+
+// .is-module-state
+
+// -------------------------------------
+//   Context
+// -------------------------------------
+
+// .has-module
+
+// -------------------------------------
+//   Submodules
+// -------------------------------------
+
+// ----- Submodule ----- //
+
+// .module-submodule
