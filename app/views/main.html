@@ -6,7 +6,7 @@
           <article class="article" ng-repeat="ptt in ptts  | limitTo: 10 | orderBy:ptt.Time">
             <h1 class="title"> {{ptt.Title}} </h1>
             <time class="date"> {{ptt.Time}} </time>
-            <a href=" {{ptt.Link}} "> Link</a>
+            <a ng-href=" {{ptt.Link}} " target="_blank"> Link</a>
           </article>
         </div>
         <div class="filters">
