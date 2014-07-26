@@ -251,20 +251,20 @@ body {
 				right: - $clo * 0.6;
 				@include transition-property(all);
 				@include transition-duration(.5s);
+			}
 
-				&::after {
-					content: "";
-					position: absolute;
-					@include z-index(map_bottom_content);
-					background-color: #f00;
-					height: 100%;
-					width: 40px;
-					right: 352px;
-					top: -12px;
-					@include transition-property(all);
-					@include transition-duration(.5s);
-					@include box-shadow(0 0 300px black, 0 0 200px black, 0 0 0px black);
-				}
+			&::after {
+				content: "";
+				position: absolute;
+				@include z-index(map_bottom_content);
+				background-color: #f00;
+				height: 99999px;
+				width: 40px;
+				right: 213px;
+				top: -12px - 99999px;
+				@include transition-property(all);
+				@include transition-duration(.5s);
+				@include box-shadow(0 99999px 300px black, 0 99999px 200px black, 0 99999px 0px black);
 			}
 		}
 
@@ -283,13 +283,11 @@ body {
 
 			.article {
 				right: 0;
-
-				&::after {
-					right: 488px;
-				}
 			}
 
-
+			&::after {
+				right: 488px;
+			}
 		}
 
 		.articles:hover ~ .filters {
