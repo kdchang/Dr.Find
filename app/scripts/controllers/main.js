@@ -82,6 +82,11 @@ angular.module('drfindApp')
       $scope.$apply();
     };
 
+    $scope.$watch("countrySelect", function(newValue, oldValue){
+      document.getElementById("c"+newValue).classList.add("active");
+      document.getElementById("c"+oldValue).classList.remove("active");
+    });
+
 		$scope.callDoctorDetailInfo = function() {
 
 			// address: "台北市大安區基隆路2段218號",
