@@ -60,6 +60,31 @@ angular.module('drfindApp')
 				}).done(function(data) {
 					// console.log(data);
           q1.resolve(data);
+          // 取得街景圖
+          // initialize the geocoder API functions. We need this to convert the address to a geolocation (GPS coordinates)
+          var geocoder =  new google.maps.Geocoder();
+          // then we call the geocode function with the address we want to use as parameter
+          geocoder.geocode( { 'address': data.Address }, function(results, status) {
+            // set the lookTo var to contain the coordinates of the address entered above
+            var lookTo = results[0].geometry.location;
+            // if the address is found and the geocoder function returned valid coordinates
+            if (status == google.maps.GeocoderStatus.OK) {
+              // initialize a new streetviewService object
+              var service = new google.maps.StreetViewService;
+              // call the "getPanoramaByLocation" function of the Streetview Services to return the closest streetview position for the entered coordinates
+              service.getPanoramaByLocation(lookTo, 50, function(panoData) {
+                // if the function returned a result
+                if (panoData != null) {
+                  $('.info.hospital').css('background-image', 'url("http://maps.googleapis.com/maps/api/streetview?size=800x800&location=' + panoData.location.latLng.k + ',' + panoData.location.latLng.B + '&fov=90&heading=' + google.maps.geometry.spherical.computeHeading(panoData.location.latLng, lookTo) + '")');
+                } else {
+                  // no streetview found :(
+                }
+              });
+            } else {
+              // there were no coordinates found for the address entered (or the address was not found)
+            }
+          });
+          // /取得街景圖
         })
           .fail(function() {
             // console.log("error");
@@ -78,6 +103,31 @@ angular.module('drfindApp')
         $scope.dinfo.Phone = mm.tel;
         // $scope.$apply();
         // console.log($scope.dinfo);
+        // 取得街景圖
+        // initialize the geocoder API functions. We need this to convert the address to a geolocation (GPS coordinates)
+        var geocoder =  new google.maps.Geocoder();
+        // then we call the geocode function with the address we want to use as parameter
+        geocoder.geocode( { 'address': mm.address }, function(results, status) {
+          // set the lookTo var to contain the coordinates of the address entered above
+          var lookTo = results[0].geometry.location;
+          // if the address is found and the geocoder function returned valid coordinates
+          if (status == google.maps.GeocoderStatus.OK) {
+            // initialize a new streetviewService object
+            var service = new google.maps.StreetViewService;
+            // call the "getPanoramaByLocation" function of the Streetview Services to return the closest streetview position for the entered coordinates
+            service.getPanoramaByLocation(lookTo, 50, function(panoData) {
+              // if the function returned a result
+              if (panoData != null) {
+                $('.info.hospital').css('background-image', 'url("http://maps.googleapis.com/maps/api/streetview?size=800x800&location=' + panoData.location.latLng.k + ',' + panoData.location.latLng.B + '&fov=90&heading=' + google.maps.geometry.spherical.computeHeading(panoData.location.latLng, lookTo) + '")');
+              } else {
+                // no streetview found :(
+              }
+            });
+          } else {
+            // there were no coordinates found for the address entered (or the address was not found)
+          }
+        });
+        // /取得街景圖
       }
       $scope.$apply();
     };
@@ -91,7 +141,7 @@ angular.module('drfindApp')
 
 		};
       $scope.deleteMarker = function(){
-          for(var index in $scope.markers) { 
+          for(var index in $scope.markers) {
               $scope.markers[index].setMap(null);
               delete $scope.markers[index];
           }
@@ -254,13 +304,13 @@ angular.module('drfindApp')
 						if (data[i].doctor == $scope.docName) {
 							// we found it
 							$scope.searchResults = data;
-							//alert($scope.docName);	
+							//alert($scope.docName);
 							// obj[i].name is the matched result
 						}
 					}
 				} else {
 
-					// var centre = $scope.map.getCenter(); 
+					// var centre = $scope.map.getCenter();
 					// console.log(centre);
 					// var latlng = new google.maps.LatLng(centre["k"], centre["B"]);
 					// console.log(latlng);
