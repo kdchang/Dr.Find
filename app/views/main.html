@@ -209,7 +209,7 @@
         <!--  -->
           <map class="google-map-container" zoom="15" geo-fallback-center="[25.058739, 121.554969]" center="{{searchResults[0].address || '[25.058739, 121.554969]'}}">
             <div ng-repeat="mm in searchResults track by $index">
-              <marker  position="{{mm.address}}" on-click="callDetailInfo(mm)" centered="true"></marker>
+              <marker  position="{{mm.address}}" on-click="callDetailInfo(mm)" centered="true" animation="Animation.BOUNCE"></marker>
             </div>
 
 <!--           <marker position="[40.71, -74.21]" on-click="callDetailInfo()"></marker>
